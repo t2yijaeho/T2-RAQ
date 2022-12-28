@@ -61,7 +61,7 @@
 5. AWS콘솔 `EC2>Load Balancers` 네트워크 로드밸런서 액티브 상태 확인
 6. 아르고 CD에서 `emarket` 앱 생성
 
-* AWS 콘솔 `Certificate Manager>Certificates Key Status`
+* AWS 콘솔 `Certificate Manager > Certificates Key Status`
 
 ## Q05. Oracle to PostgreSQL Open Source Migration Tool
 
@@ -69,7 +69,7 @@
 
 <https://github.com/darold/ora2pg>
 
-## Q06. OpenAPI Specification(OAS)
+## Q06. OpenAPI Specification(OAS) Null data type
 
 * OAS 3.0에서 해당 데이터 값이 널(null) 일 수도 있다는 속성을 나타냅니다. 자세한 내용은 아래 공식 문서를 참조하시기 바랍니다
 
@@ -86,7 +86,7 @@
 * 보다 상세한 내용은 아래 문서 참조하시기 바랍니다
   <https://developer.hashicorp.com/terraform/language/settings/backends/s3#protecting-access-to-workspace-state>
 
-## Q9. AWS Database Migration Service (DMS) Logging
+## Q08. AWS Database Migration Service (DMS) Logging
 
 * 데이터베이스 마이그레이션 태스크 오류가 발생한 경우 해당 태스크 상세 내역 화면의 `Table statistics` 탭에서 간단한 오류 내역을 확인할 수 있습니다
 
@@ -169,9 +169,11 @@ Oracle unicode
 
 ## Q18. Convention over Configuration
 
-* src/main src/test 폴더 구조
+* src/main src/test directory structure origin
 
 <https://en.wikipedia.org/wiki/Convention_over_configuration>
+
+<https://books.sonatype.com/mvnref-book/reference/installation-sect-conventionConfiguration.html>
 
 <https://docs.gradle.org/current/userguide/designing_gradle_plugins.html#convention_over_configuration>
 
@@ -211,7 +213,7 @@ git add -A
 * VM 시간이 서버 시간과 5분 이상 차이가 나는 경우 발생하는 오류로 VM의 시간을 재설정하시기 바랍니다
 * The system clock of the container is off Amazon’s clock by more than 5 minutes, the maximum allowed by Amazon’s signature algorithm
 
-## Q21. MobaXterm Checklist
+## Q21. MobaXterm connection troubleshoot Checklist
 
 1. MobaXterm Configuration
 
