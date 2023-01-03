@@ -10,10 +10,10 @@
 * `Ctrl` + `Shift`+ `Escape` : Microsoft Windows Task manager
 * `Ctrl` + `F5` : Web Browser Hard refresh
 
-* Gradle Tasks 안 보일 경우 STS 상단 메뉴 `Windows` > `Show View` > `Other` > (검색) `Gradle Tasks` 선택 후 `Open`
-* 상단 메뉴 `Windows` > `Show View` > `Package Explorer`
+* Gradle Tasks 안 보일 경우 STS(Spring Tool Suite) 상단 메뉴 `Windows` > `Show View` > `Other` > (검색) `Gradle Tasks` 선택 후 `Open`
+* STS 상단 메뉴 `Windows` > `Show View` > `Package Explorer`
 
-* 현재 진행중인 교재 위치(목차 번호)와 화면 스크린샷을 보여주시기 바랍니다
+* 현재 진행중인 교재 위치(목차 번호)와 화면 스크린샷
 * 슬랙 상단에 `검색` 기능이 있습니다. 유사한 오류인 경우 해결 내용을 참조하는데 유용합니다
 
 ## Q01. OpenAPI Specification Reference
@@ -36,12 +36,11 @@
 
 ## Q03. Terraform Backend
 
-* 테라폼 스테이트 파일의 S3 사용과 관련된 자세한 사항은 아래 공식 문서 참조하시기 바랍니다
+* 테라폼 스테이트 파일의 S3 사용
    <https://www.terraform.io/language/settings/backends/s3>
 * 다이나모 테이블 키 이름은 백엔드 설정의 버킷과 키 값을 이용합니다
 * 테라폼 사용 시나리오나 구성환경에 따라 다양한 방법이 가능할 것으로 생각되고 백엔드 스테이트 파일 잠금과 더블어 다중 사용자 환경에 대한 고려가 필요할 것 같습니다
 * 파일 잠금의 직접적인 용도는 스테이트 파일의 접근 제한이 맞습니다
-* 실 업무 적용환경에 대해 궁금하신 사항은 차주 전환사례 과정에 소개되는 내용을 참고하시거나 테크체인지 오픈세미나의 테라폼 세션에 참여하시거나 해당 동영상을 참조하는 것도 좋을 것으로 생각됩니다
 
 ## Q04. ArgoCD istio app failed to syncing AWS load balancer
 
@@ -71,7 +70,7 @@
 
 ## Q06. OpenAPI Specification(OAS) Null data type
 
-* OAS 3.0에서 해당 데이터 값이 널(null) 일 수도 있다는 속성을 나타냅니다. 자세한 내용은 아래 공식 문서를 참조하시기 바랍니다
+* OAS 3.0에서 해당 데이터 값이 널(null) 일 수도 있다는 속성을 나타냅니다
 
     <https://swagger.io/docs/specification/data-models/data-types/#null>
 
@@ -83,7 +82,6 @@
 
 * 테라폼 코드가 정상적으로 수행이 완료되면 S3에 저장된 테라폼 스테이트 파일에 대한 MD5 해시 값이 다이나모DB의 terraform-lock 테이블에 s3 오브젝트 키를 파티션 키로 하는 아이템에 저장이 됩니다
 
-* 보다 상세한 내용은 아래 문서 참조하시기 바랍니다
   <https://developer.hashicorp.com/terraform/language/settings/backends/s3#protecting-access-to-workspace-state>
 
 ## Q08. AWS Database Migration Service (DMS) Logging
@@ -96,11 +94,25 @@
 
   <https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.Logging.html>
 
+## Q09. Linux single dot directory
+
+[Dot Definition](http://www.linfo.org/dot.html)
+
+>This is a short string (i.e., sequence of characters) that is added to the end of the base name (i.e., the main part of the name) of a file or directory in order to indicate the type of file or directory.
+
+>On Unix-like operating systems every directory contains, as a minimum, an object represented by a single dot and another represented by two successive dots. The former refers to the directory itself and the latter refers to its parent directory (i.e., the directory that contains it). These items are automatically created in every directory, as can be seen by using the ls command with its -a option (which instructs it to show all of its contents, including hidden items).
+
+* Single Dot: Directory itself
+* Double Dots: Parent directory
+
+```Shell
+git add .
+git add -A
+```
+
 ## Q10. AWS DMS Task Expressions
 
 * DMS에서는 자체 액션 뿐만 아니라 변환 룰 표현식에 브라이틱스에서도 사용되는 SQLite 스크립트를 지원합니다
-
-* 보다 상세한 내용은 아래 참조하시기 바랍니다
 
   <https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.SelectionTransformation.Expressions.html#CHAP_Tasks.CustomizingTasks.TableMapping.SelectionTransformation.Expressions-SQLite>
 
@@ -108,7 +120,7 @@
 
 ## Q11. Junit Parameterized Tests
 
-* 테스트 관련해서 아래 내용도 참고해 보시기 바랍니다
+* 매개변수 적용 테스트
 
   <https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests>
 
@@ -134,7 +146,7 @@
 
 ## Q14. MariaDB Backtick
 
-* 마리아DB에서는 일반 오브젝트 식별자와 예약어를 구분하기 위해 억음부호(Backtick, 키보드 숫자 1 왼쪽에 위치)를 사용합니다
+* 마리아DB(MariaDB)에서는 일반 오브젝트 식별자와 예약어를 구분하기 위해 억음부호(Backtick, 키보드 숫자 1 왼쪽에 위치)를 사용합니다
 
 * Identifiers may be quoted using the backtick character - `. Quoting is optional for identifiers that don't contain special characters, or for identifiers that are not reserved words
 
@@ -158,8 +170,7 @@ Oracle unicode
 
 ## Q16. rds_superuser role
 
-* `rdsadmin`은 자동 생성되는 사용자(역할) 중 하나로 아마존 RDS 내부적인 관리 용도로 사용됩니다
-상세한 내용은 아래 참조하시기 바랍니다
+* `rdsadmin`은 자동 생성되는 사용자(역할) 중 하나로 아마존 RDS 내부적인 관리 용도로 사용
 
   <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.PostgreSQL.CommonDBATasks.Roles.html#Appendix.PostgreSQL.CommonDBATasks.Roles.rds_superuser>
 
@@ -177,22 +188,6 @@ Oracle unicode
 
 <https://docs.gradle.org/current/userguide/designing_gradle_plugins.html#convention_over_configuration>
 
-## Q19. Linux single dot directory
-
-[Dot Definition](http://www.linfo.org/dot.html)
-
->This is a short string (i.e., sequence of characters) that is added to the end of the base name (i.e., the main part of the name) of a file or directory in order to indicate the type of file or directory.
-
->On Unix-like operating systems every directory contains, as a minimum, an object represented by a single dot and another represented by two successive dots. The former refers to the directory itself and the latter refers to its parent directory (i.e., the directory that contains it). These items are automatically created in every directory, as can be seen by using the ls command with its -a option (which instructs it to show all of its contents, including hidden items).
-
-* Single Dot: Directory itself
-* Double Dots: Parent directory
-
-```Shell
-git add .
-git add -A
-```
-
 ## Q19. Ubuntu 22 version
 
 * which services should be restarted
@@ -208,7 +203,7 @@ git add -A
 
   <https://zhang-yang.medium.com/solving-signature-not-yet-current-error-when-using-aws-in-docker-c2d8ba314a7e>
 
-## Q20. ECR Creation error by time time sync failure
+## Q20. ECR Creation error by time sync failure
 
 * VM 시간이 서버 시간과 5분 이상 차이가 나는 경우 발생하는 오류로 VM의 시간을 재설정하시기 바랍니다
 * The system clock of the container is off Amazon’s clock by more than 5 minutes, the maximum allowed by Amazon’s signature algorithm
@@ -411,9 +406,8 @@ $JENKINS_HOME/jobs/$JOB_NAME/builds/lastSuccessfulBuild/log
 ## Q43. Terraform Plan
 
 * Plan 단계가 단독 사용자 환경에서 수작업으로 실습 진행하는 경우에는 별다른 의미를 찾기 어렵겠지만
-* 다중 사용자 환경에서 내일 배우게 될 깃옵스(GitOps) 등을 통한 자동화 프로세스를 적용시에는 워크플로우 관점에서 유용한 단계라고 합니다
-* 자세한 내용이 궁금하신 경우  아래 참조하시기 바랍니다
-<https://developer.hashicorp.com/terraform/tutorials/automation/automate-terraform>
+* 다중 사용자 환경에서 깃옵스(GitOps) 등을 통한 자동화 프로세스를 적용시에는 워크플로우 관점에서 유용한 단계
+  <https://developer.hashicorp.com/terraform/tutorials/automation/automate-terraform>
 
 ## Q44. Terraform error on a specific AWS EC2 Instance Type
 
@@ -458,10 +452,10 @@ TableSizeBytes
 1. 차일드 모듈(Child Module)에서만 필요한 경우 로컬(Local values, Locals)을 사용할 수 있습니다
     <https://developer.hashicorp.com/terraform/language/values/locals>
 
-    조건에 따라서 다른 값이 필요한 경우 아래 내용 참조하시기 바랍니다
+    조건에 따라서 다른 값이 필요한 경우
     <https://stackoverflow.com/questions/60084611/how-best-to-handle-multiple-tfvars-files-that-use-common-tf-files>
 
-2. 차일드 모듈의 아웃풋(Outputs) 값은  module.<MODULE NAME>.<OUTPUT NAME> 형태로 사용됩니다
+2. 차일드 모듈의 아웃풋(Outputs) 값은  module.<MODULE NAME>.<OUTPUT NAME> 형태로 사용
     <https://developer.hashicorp.com/terraform/language/values/outputs#accessing-child-module-outputs>
 
 
@@ -666,9 +660,17 @@ SELECT * FROM INFORMATION_SCHEMA.SCHEMATA;
 
 ## Q68. Windows Logo
 
-윈도우 물결무늬 로고의 사용은 2012년 8월 23일에 종료되었습니다. 참고로 지금은 2022년 입니다
+윈도우 물결무늬 로고의 사용은 2012년 8월 23일에 종료되었습니다
 
 [Microsoft Unveils a New Look](https://blogs.microsoft.com/blog/2012/08/23/microsoft-unveils-a-new-look/)
 
 [Microsoft Windows Logo Variants](https://logos.fandom.com/wiki/Microsoft_Windows)
+
+## Q69. Amazon EC2 Instance Connect
+
+클라우드쉘 또는 클라우드IDE와 동일하게 아마존 EC2 인스턴스 커넥트도 사용자 로컬 클라이언트가 직접 접속하는 것이 아니라 해당 서비스의 엔드포인트를 거쳐서 접속하게 되므로 접속하고자 하는 서비스의 시큐리티 그룹에는 해당 서비스의 CIDR가 등록되어 있어야 합니다
+
+<https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-set-up.html>
+
+<https://aws.amazon.com/blogs/security/use-ec2-instance-connect-to-provide-secure-ssh-access-to-ec2-instances-with-private-ip-addresses/>
 
