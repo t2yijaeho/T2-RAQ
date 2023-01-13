@@ -162,11 +162,9 @@ git add -A
 
 >AL32UTF8 is the Oracle Unicode character set that supports the supplementary characters defined in the latest Unicode standard
 
-Oracle unicode
+[Oracle unicode](https://www.oracle.com/technetwork/products/globalization/twp-appdev-unicode-10gr2-129234.pdf)
 
-<https://www.oracle.com/technetwork/products/globalization/twp-appdev-unicode-10gr2-129234.pdf>
-
-<https://docs.oracle.com/en/database/oracle/oracle-database/18/nlspg/appendix-A-locale-data.html#GUID-A9E30C27-FD47-4552-B670-F41A95B11405>
+[Locale Data](https://docs.oracle.com/en/database/oracle/oracle-database/18/nlspg/appendix-A-locale-data.html#GUID-A9E30C27-FD47-4552-B670-F41A95B11405)
 
 ## Q16. rds_superuser role
 
@@ -458,7 +456,11 @@ TableSizeBytes
 2. 차일드 모듈의 아웃풋(Outputs) 값은  module.<MODULE NAME>.<OUTPUT NAME> 형태로 사용
     <https://developer.hashicorp.com/terraform/language/values/outputs#accessing-child-module-outputs>
 
+3. `vpc_id = var.vpc_id`
+  vpc_id 가 리소스 블록(Resource Blocks) 안에 있는 거라면 vpc_id 는 해당 리소스를 설정하기 위한 컨피그레이션 매개변수(Configuration argument)이고 var.vpc_id는 해당 변수에 값을 설정하기 위한 입력 변수(Input variable) 입니다
 
+  [Resource Blocks](https://developer.hashicorp.com/terraform/language/resources/syntax)
+  [Input Variables](https://developer.hashicorp.com/terraform/language/values/variables)
 ## Q50. Domain Name Service
 
 1. route 53 > domain > hosted zone 도메인 정보와 eks-values.yaml 일치 여부 확인
@@ -585,7 +587,17 @@ The error also might occur because of using a semicolon ";" at the end or incorr
 
 ## Q58. Query Result vs. Script Output
 
-SQL디벨로퍼(Developer)에서 `쿼리 결과(Query Result, Ctrl + Enter)`는 SQL 문장에 대한 수행 결과를 보여주는 내용으로 여러개의 SQL 문장을 순서대로 수행하는 `스크립트 아웃풋(Script Output, F5)`을 보여주는 화면과는 차이가 있습니다
+* Execute Statement(Run Statement): for a selected individual statement
+>executes the statement at the mouse pointer in the Enter SQL Statement box. The SQL statements can include ?bind variables and substitution variables of type VARCHAR2 (although in most cases, VARCHAR2 is automatically converted internally to NUMBER if necessary); a pop-up box is displayed for entering variable values.
+
+* Run Script: for all statements on the worksheet
+>executes all statements in the Enter SQL Statement box using the Script Runner. The SQL statements can include substitution variables (but not bind variables) of type VARCHAR2 (although in most cases, VARCHAR2 is automatically converted internally to NUMBER if necessary); a pop-up box is displayed for entering substitution variable values.
+
+>Every time you click the Run Script icon, the linesize value is reset to the system default, which is the width of the Script Output pane. If you want to ensure a specific linesize is in effect, use the set linesize command (for example, set linesize=80) for each Run Script occurrence.
+
+[2.8 Using the SQL Worksheet](https://docs.oracle.com/en/database/oracle/sql-developer/22.2/rptug/sql-developer-concepts-usage.html#GUID-FB7B5B33-3B34-497D-B12A-C30779DE2322:~:text=Execute%20Statement%20executes,Run%20Script%20occurrence.)
+
+SQL디벨로퍼(Developer)에서 `쿼리 결과(Run Statement, Query Result, Ctrl + Enter)`는 SQL 문장에 대한 수행 결과를 보여주는 내용으로 여러개의 SQL 문장을 순서대로 수행하는 `스크립트 아웃풋(Run Script, Script Output, F5)`을 보여주는 화면과는 차이가 있습니다
 
 [Script Output and Query Result](https://community.oracle.com/tech/developers/discussion/2201870/whats-the-difference-between-script-output-and-query-result)
 
@@ -629,7 +641,7 @@ SELECT * FROM INFORMATION_SCHEMA.SCHEMATA;
 
 마크다운 뷰어 업데이트 후에 윈도우즈 다크모드에서 HTML 태그 관련 오류 발생시
 
-* 윈도우즈 다크모드 해제 , 
+* 윈도우즈 다크모드 해제
 * 마크다운 뷰어 테마 변경 또는 
 * VS코드 와 같은 다른 마크다운 뷰어 사용
 
@@ -674,3 +686,36 @@ SELECT * FROM INFORMATION_SCHEMA.SCHEMATA;
 
 <https://aws.amazon.com/blogs/security/use-ec2-instance-connect-to-provide-secure-ssh-access-to-ec2-instances-with-private-ip-addresses/>
 
+## Q70. Jenkins admin password
+
+일반적으로 중요한 패스워드는 복호화가 가능하도록 암호화 하지 않습니다
+젠킨스 초기 관리자 패스워드는 설치시에 사용하는 용도로만 제공되고 있으며 Base64와 같은 텍스트 변환 알고리즘으로 패스워드를 암호화 하지는 않습니다
+
+Initial admin password for jenkins
+[Setup Jenkins On Kubernetes](https://www.jenkins.io/doc/book/installing/kubernetes/)
+
+[Reset Jenkins Admin User Password](https://medium.com/@selvarajk/how-to-reset-jenkins-admin-user-password-6fb29d4398bb)
+
+
+## Q71. git remote
+
+깃 리모트 명령어를 통해서 현재 로컬 저장소에 저장되어 있는 코드를 원격으로 업로드 할 저장소 위치를 확인할 수 있습니다. 다수의 저장소나 브랜치가 있는 경우에 원하는 위치가 올바르게 지정되어 있는지 확인할 수 있습니다
+
+
+## Q72. Istio concepts
+
+이스티오는 서비스 메쉬(Service Mesh) 솔루션 중 하나로 이마켓과 같은 마이크로서비스아키텍처에서 발생할 수 있는 서비스간 연결 복잡성 등을 해결하기 위해 적용되었으며 개별 파드가 수행하던 보안, 트래픽, 모니터링 등 기능을 사이드카 프록시(Side Car Proxy)로 비즈니스 로직과 분리하여 통합 처리하도록 하고 있습니다.
+자세한 내용은 운영 영역 4일차 이론 교재 2장. Deploy Application과 강의 동영상을 우선 참고하시기 바랍니다
+
+<https://istio.io/latest/docs/concepts/>
+<https://www.opsmx.com/blog/what-is-service-mesh-and-why-is-it-necessary/>
+
+## Q73. AWS DMS Tasks
+
+AWS DMS의 다양한 기능과 관련해서는 직접 사용자 가이드 문서를 참조하셔도 좋겠습니다
+
+[AWS Database Migration Service User Guide](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.html)
+
+SCT, DMS를 활용한 다양한 사례를 추가로 실습해 보고 싶은 경우 아래 내용도 참조해 보시기 바랍니다
+
+[AWS Database Migration Workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/77bdff4f-2d9e-4d68-99ba-248ea95b3aca/en-US)
