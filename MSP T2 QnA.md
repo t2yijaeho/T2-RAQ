@@ -29,6 +29,26 @@
   <https://oai.github.io/Documentation/specification-servers.html>
   <https://swagger.io/docs/specification/api-host-and-base-path/>
 
+* 오픈API(OpenAPI)의 매개변수 오브젝트(Parameter Object)와 관련해서는 아래 내용도 참고해 보시기 바랍니다
+
+[The Parameter Object](https://oai.github.io/Documentation/specification-parameters.html#the-parameter-object)
+
+
+* 시간이 되실 때 기본적인 오픈API 명세에 대해 읽어 보시는 것도 좋겠습니다
+
+[The OpenAPI Specification Explained](https://oai.github.io/Documentation/specification.html#the-openapi-specification-explained)
+
+
+* 버전에 따라 차이가 있을 수 있으니 가이드 문서 참조시에 버전도 확인이 필요합니다
+* 실습에 사용되는 버전은 3.0.1입니다
+
+[현재 버전 3.1.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md)
+
+[기존 버전](https://github.com/OAI/OpenAPI-Specification/blob/main/versions)
+
+[3.0.1](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.1.md)
+
+
 ## Q02. OpenAPI Syntax
 
 * OpenAPI definitions can be written in JSON or YAML
@@ -148,9 +168,9 @@ git add -A
 
 * 마리아DB(MariaDB)에서는 일반 오브젝트 식별자와 예약어를 구분하기 위해 억음부호(Backtick, 키보드 숫자 1 왼쪽에 위치)를 사용합니다
 
-* Identifiers may be quoted using the backtick character - `. Quoting is optional for identifiers that don't contain special characters, or for identifiers that are not reserved words
+>Identifiers may be quoted using the backtick character - `. Quoting is optional for identifiers that don't contain special characters, or for identifiers that are not reserved words
 
-  <https://mariadb.com/kb/en/identifier-names/>
+[Identifier Names](https://mariadb.com/kb/en/identifier-names/)
 
 ## Q15. utf8 vs. utf-8
 
@@ -280,7 +300,9 @@ git add -A
 
 ## Q28. Spring Boot Database Initialization Using Basic SQL Scripts
 
-<https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto.data-initialization.using-basic-sql-scripts>
+
+[Initialize a Database Using Basic SQL Scripts](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto.data-initialization.using-basic-sql-scripts)
+
 
 ## Q29. OpenAPI PUT vs. PATCH
 
@@ -719,3 +741,77 @@ AWS DMS의 다양한 기능과 관련해서는 직접 사용자 가이드 문서
 SCT, DMS를 활용한 다양한 사례를 추가로 실습해 보고 싶은 경우 아래 내용도 참조해 보시기 바랍니다
 
 [AWS Database Migration Workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/77bdff4f-2d9e-4d68-99ba-248ea95b3aca/en-US)
+
+## Q74. Remote Desktop Connection (RDP) Certificate Warnings
+
+(https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/remote-desktop-connection-rdp-certificate-warnings/ba-p/259301)
+
+## Q75. Amazon EC2 Instance lifecycle
+
+[Instance lifecycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
+
+[Terminate your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html)
+
+## Q76. Gradle Listing tasks
+
+[Listing tasks](https://docs.gradle.org/current/userguide/command_line_interface.html#sec:listing_tasks)
+
+## Q77. Amazon EC2 Public IPv4 addresses
+
+[Public IPv4 addresses](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html#concepts-public-addresses:~:text=We%20release%20your%20instance%27s%20public%20IP%20address%20when%20it%20is%20stopped%2C%20hibernated%2C%20or%20terminated.%20Your%20stopped%20or%20hibernated%20instance%20receives%20a%20new%20public%20IP%20address%20when%20it%20is%20started.)
+
+## Q78. Spring Boot Configuration
+
+[Developing Your First Spring Boot Application](https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started.html#getting-started.first-application)
+
+## Q79. Annotation Interface ExtendWith
+
+[Annotation Interface ExtendWith](https://junit.org/junit5/docs/5.8.0/api/org.junit.jupiter.api/org/junit/jupiter/api/extension/ExtendWith.html)
+
+[SpringExtension](https://rieckpil.de/what-the-heck-is-the-springextension-used-for/)
+
+[Junit 5 with Spring Boot: When to use @ExtendWith Spring or Mockito?](https://stackoverflow.com/questions/61433806/junit-5-with-spring-boot-when-to-use-extendwith-spring-or-mockito)
+
+## Q80. MyBatis 
+
+[10 Spring MyBatis Best Practices](https://climbtheladder.com/10-spring-mybatis-best-practices/)
+https://mybatis.org/mybatis-3/getting-started.html
+
+<https://mybatis.org/mybatis-3/getting-started.html>
+
+
+## Q81. Annotation Processing Generated source directory
+
+[Annotation Processing Generated source directory](https://help.eclipse.org/latest/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fref-apt-config.htm)
+
+## Q82. Mockbean
+
+https://www.baeldung.com/java-spring-mockito-mock-mockbean
+
+## Q83. H2 connection mode
+
+* H2를 실습에서 인메모리 (In-Memory) 데이터베이스로 사용하고 있지만 디스크 기반으로도 사용 가능하며 URL에 따라 다양한 설정을 지원합니다
+
+[Database URL Overview](http://www.h2database.com/html/features.html#database_url)
+
+
+## Q84. MariaDB Reserved Words
+
+필요한 경우 관련 문서는 공식 사이트 또는 버전별 소스파일을 참조하시는게 좋겠습니다
+
+>Reserved words cannot be used as Identifiers, unless they are quoted.
+>The definitive list of reserved words for each version can be found by examining the sql/lex.h and sql/sql_yacc.yy files.
+
+[Reserved Words](https://mariadb.com/kb/en/reserved-words/)
+
+<https://github.com/MariaDB/server/blob/11.0/sql/lex.h>
+<https://github.com/MariaDB/server/blob/11.0/sql/sql_yacc.yy>
+
+
+## Q85. Spring Boot OAuth2 with keycloak
+
+[Spring Boot OAuth2 with keycloak for Bearer Client](https://ravthiru.medium.com/springboot-oauth2-with-keycloak-for-bearer-client-3a31f608a78)
+
+[Spring Boot Oauth2](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#web.security.oauth2.client)
+
+[SpringBoot OAuth2 with Keycloak as provider](https://ravthiru.medium.com/springboot-oauth2-with-keycloak-as-provider-c31b2897e913)
