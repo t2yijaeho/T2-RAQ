@@ -541,6 +541,17 @@ error validating data: [unknown object type "nil" in Service.metadata.annotation
 
 <https://stackoverflow.com/questions/55320836/how-to-calculate-total-ips-of-a-subnet-in-aws>
 
+
+* subnet with CIDR block 10.0.0.0/24, the following five IP addresses are reserved
+
+```text
+10.0.0.0: Network address
+10.0.0.1: Reserved by AWS for the VPC router
+10.0.0.2: Reserved by AWS for the DNS server
+10.0.0.3: Reserved by AWS for future use
+10.0.0.255: Network broadcast address
+```
+
 ## Q56. A Kubernetes controller for Elastic Load Balancers
 
 * Annotations
@@ -704,6 +715,17 @@ SELECT * FROM INFORMATION_SCHEMA.SCHEMATA;
 [Set up EC2 Instance Connect](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-set-up.html)
 
 [Use EC2 Instance Connect to provide secure SSH access to EC2 instances with private IP addresses](https://aws.amazon.com/blogs/security/use-ec2-instance-connect-to-provide-secure-ssh-access-to-ec2-instances-with-private-ip-addresses/)
+
+
+```Powershell
+Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+Get-PSRepository -Name PSGallery
+Install-Module -Name AWS.Tools.Installer
+Install-Module -Name AWS.Tools.Installer -Force
+
+
+
+```
 
 ```Bash
 sudo apt update
@@ -904,3 +926,5 @@ EKS를 활용한 헬름 차트 배포와 관련된 기본 사항은 아래 워�
 
 [Pipeline Syntax When Built-in Conditions](https://www.jenkins.io/doc/book/pipeline/syntax/#built-in-conditions)
 
+
+[DNS attributes in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support)
