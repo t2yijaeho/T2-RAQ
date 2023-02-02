@@ -10,11 +10,11 @@
 * `Ctrl` + `Shift`+ `Escape` : Microsoft Windows Task manager
 * `Ctrl` + `F5` : Web Browser Hard refresh
 
-* Gradle Tasks 안 보일 경우 STS(Spring Tool Suite) 상단 메뉴 `Windows` > `Show View` > `Other` > (검색) `Gradle Tasks` 선택 후 `Open`
-* STS 상단 메뉴 `Windows` > `Show View` > `Package Explorer`
+* Gradle Tasks menu STS(Spring Tool Suite) upper menu `Windows` > `Show View` > `Other` > (Search) `Gradle Tasks` Select and `Open`
+* STS upper menu `Windows` > `Show View` > `Package Explorer`
 
-* 현재 진행중인 교재 위치(목차 번호)와 화면 스크린샷
-* 슬랙 상단에 `검색` 기능이 있습니다. 유사한 오류인 경우 해결 내용을 참조하는데 유용합니다
+* Current textbook location (table of contents number) and screenshot
+* There is a 'search' function at the top of the slack. If it is a similar error, it is useful to refer to the solution
 
 ## Q01. OpenAPI Specification Reference
 
@@ -29,38 +29,39 @@
   <https://oai.github.io/Documentation/specification-servers.html>
   <https://swagger.io/docs/specification/api-host-and-base-path/>
 
-* 오픈API(OpenAPI)의 매개변수 오브젝트(Parameter Object)와 관련해서는 아래 내용도 참고해 보시기 바랍니다
+* OpenAPI Parameter Object
 
-[The Parameter Object](https://oai.github.io/Documentation/specification-parameters.html#the-parameter-object)
-
-
-* 시간이 되실 때 기본적인 오픈API 명세에 대해 읽어 보시는 것도 좋겠습니다
-
-[The OpenAPI Specification Explained](https://oai.github.io/Documentation/specification.html#the-openapi-specification-explained)
+  [The Parameter Object](https://oai.github.io/Documentation/specification-parameters.html#the-parameter-object)
 
 
-* 버전에 따라 차이가 있을 수 있으니 가이드 문서 참조시에 버전도 확인이 필요합니다
-* 실습에 사용되는 버전은 3.0.1입니다
+* OpenAPI Specification
 
-[현재 버전 3.1.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md)
+  [The OpenAPI Specification Explained](https://oai.github.io/Documentation/specification.html#the-openapi-specification-explained)
 
-[기존 버전](https://github.com/OAI/OpenAPI-Specification/blob/main/versions)
 
-[3.0.1](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.1.md)
+* There may be differences depending on the version, so you need to check the version when referring to the guide document
+* The version used for practice is 3.0.1
+
+  [3.1.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md)
+
+  [Version archive](https://github.com/OAI/OpenAPI-Specification/blob/main/versions)
+
+  [3.0.1](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.1.md)
 
 
 ## Q02. OpenAPI Syntax
 
 * OpenAPI definitions can be written in JSON or YAML
-* 특별히 명시된 경우 등을 제외하고 문자열 표현시 JSON과 다르게 YAML에서는 인용부호를 필요로 하지 않습니다
+* when expressing strings YAML does not require quotation marks, unlike JSON, except when specifically specified
 
 ## Q03. Terraform Backend
 
-* 테라폼 스테이트 파일의 S3 사용
-   <https://www.terraform.io/language/settings/backends/s3>
-* 다이나모 테이블 키 이름은 백엔드 설정의 버킷과 키 값을 이용합니다
-* 테라폼 사용 시나리오나 구성환경에 따라 다양한 방법이 가능할 것으로 생각되고 백엔드 스테이트 파일 잠금과 더블어 다중 사용자 환경에 대한 고려가 필요할 것 같습니다
-* 파일 잠금의 직접적인 용도는 스테이트 파일의 접근 제한이 맞습니다
+* Use Amazon S3 for terraform state files  
+  <https://www.terraform.io/language/settings/backends/s3>
+* The Dynamo table key name uses the bucket and key values of the backend settings
+* Various methods are possible depending on the terraform usage scenario or configuration environment
+* Necessary to consider the backend state file lock and multi-user environment.
+* The direct use of file locking is to limit access to state files
 
 ## Q04. ArgoCD istio app failed to syncing AWS load balancer
 
@@ -73,46 +74,45 @@
   tstatus code: 400
   ```
 
-1. 아르고 CD(Argo CD)에서 `emarket`, `istio` 앱 삭제
-2. AWS콘솔 `EC2>Load Balancers`  액티브(Active) 상태인 네트워크 로드밸런서(Network Load balancer, Type: Network)만 삭제
-3. AWS콘솔 `EC2>Target groups` 이스티오(Istio) 관련 target group(K8s-istiosys-...) 삭제
-4. 아르고 CD에서 `istio` 앱 생성
-5. AWS콘솔 `EC2>Load Balancers` 네트워크 로드밸런서 액티브 상태 확인
-6. 아르고 CD에서 `emarket` 앱 생성
+1. Argo CD `emarket`, `istio` app delete
+2. AWS management console `EC2>Load Balancers`  Active Network Load balancer(Type: Network) delete
+3. AWS management console `EC2>Target groups` Istio related target group(K8s-istiosys-...) delete
+4. Argo CD `istio` app create
+5. AWS management console `EC2>Load Balancers` Confirm Network Load balancer active state
+6. Argo CD `emarket` app create
 
-* AWS 콘솔 `Certificate Manager > Certificates Key Status`
+* AWS management console `Certificate Manager > Certificates Key Status`
 
 ## Q05. Oracle to PostgreSQL Open Source Migration Tool
 
-<https://www.enterprisedb.com/blog/the-complete-oracle-to-postgresql-migration-guide-tutorial-move-convert-database-oracle-alternative>
+  [The Complete Oracle to Postgres Migration Guide](https://www.enterprisedb.com/blog/the-complete-oracle-to-postgresql-migration-guide-tutorial-move-convert-database-oracle-alternative)
 
-<https://github.com/darold/ora2pg>
+  [ora2pg](https://github.com/darold/ora2pg)
 
 ## Q06. OpenAPI Specification(OAS) Null data type
 
-* OAS 3.0에서 해당 데이터 값이 널(null) 일 수도 있다는 속성을 나타냅니다
+* In OAS 3.0, the property indicates that the corresponding data value may be null
 
-    <https://swagger.io/docs/specification/data-models/data-types/#null>
+  <https://swagger.io/docs/specification/data-models/data-types/#null>
 
-* OAS 3.1에서는 널 데이터 타입이 사용 가능합니다
+* Null data type is available in OAS 3.1
 
-    <https://spec.openapis.org/oas/v3.1.0.html#data-types>
+  <https://spec.openapis.org/oas/v3.1.0.html#data-types>
 
 ## Q07. Terraform state lock
 
-* 테라폼 코드가 정상적으로 수행이 완료되면 S3에 저장된 테라폼 스테이트 파일에 대한 MD5 해시 값이 다이나모DB의 terraform-lock 테이블에 s3 오브젝트 키를 파티션 키로 하는 아이템에 저장이 됩니다
+* When the terraform code is executed normally, the MD5 hash value for the terraform state file stored in S3 in the item with the s3 object key as the partition key in the terraform-lock table of DynamoDB
 
-  <https://developer.hashicorp.com/terraform/language/settings/backends/s3#protecting-access-to-workspace-state>
+  [Protecting Access to Workspace State](https://developer.hashicorp.com/terraform/language/settings/backends/s3#protecting-access-to-workspace-state)
 
 ## Q08. AWS Database Migration Service (DMS) Logging
 
-* 데이터베이스 마이그레이션 태스크 오류가 발생한 경우 해당 태스크 상세 내역 화면의 `Table statistics` 탭에서 간단한 오류 내역을 확인할 수 있습니다
+* If a database migration task error occurs, you can check the simple error history on the `Table statistics` tab on the task detail screen.
+* To check the detailed error history, you can enable cloud watch logging and check the detailed log history
 
-* 상세한 오류 내역을 확인하기 위해서는 클라우드 워치 로깅을 활성화(Enable) 하고 상세한 로그 내역을 확인할 수 있습니다
+  [AWS DMS task in an error status](https://aws.amazon.com/premiumsupport/knowledge-center/dms-task-error-status/)
 
-  <https://aws.amazon.com/premiumsupport/knowledge-center/dms-task-error-status/>
-
-  <https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.Logging.html>
+  [Logging task settings](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.Logging.html)
 
 ## Q09. Linux single dot directory
 
@@ -132,41 +132,39 @@ git add -A
 
 ## Q10. AWS DMS Task Expressions
 
-* DMS에서는 자체 액션 뿐만 아니라 변환 룰 표현식에 브라이틱스에서도 사용되는 SQLite 스크립트를 지원합니다
+* AWS DMS supports SQLite scripts used in Brightics for transformation rule expressions as well as self-action
 
-  <https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.SelectionTransformation.Expressions.html#CHAP_Tasks.CustomizingTasks.TableMapping.SelectionTransformation.Expressions-SQLite>
+  [Using SQLite functions to build expressions](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.SelectionTransformation.Expressions.html#CHAP_Tasks.CustomizingTasks.TableMapping.SelectionTransformation.Expressions-SQLite)
 
-  <https://aws.amazon.com/blogs/database/transform-column-content-and-data-type-using-aws-dms/>
+  [Transform column content and data type using AWS DMS](https://aws.amazon.com/blogs/database/transform-column-content-and-data-type-using-aws-dms/)
 
 ## Q11. Junit Parameterized Tests
 
-* 매개변수 적용 테스트
-
-  <https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests>
+* [Junit Parameterized Tests](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests)
 
 ## Q12. Terraform Syntax
 
-* 테라폼이 JSON(JavaScript Object Notation)으로 표현이 되는 경우에는 엄격하게 큰따옴표(Double Quotes)를 적용해야 하지만 HCL(HashiCorp Configuration Language)의 경우에는 그렇지 않습니다
+* If the terraform is expressed as JavaScript Object Notation (JSON), Double Quotes should be strictly applied, but not in the case of HCL (HashiCorp Configuration Language).
 
-* 대부분의 예제에서는 관행상 인용부호를 많이 쓰는 것 같습니다
+* In most examples, quotation marks are used as a practice
 
-  <https://www.w3schools.com/js/js_json_syntax.asp>
+  [JSON Syntax](https://www.w3schools.com/js/js_json_syntax.asp)
 
-  <https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md>
+  [HCL Native Syntax Specification](https://github.com/hashicorp/hcl/blob/main/hclsyntax/spec.md)
 
-  <https://developer.hashicorp.com/terraform/language/syntax/configuration?optInFrom=terraform-io>
+  [Terraform Configuration Syntax](https://developer.hashicorp.com/terraform/language/syntax/configuration?optInFrom=terraform-io)
 
 ## Q13. Terraform Data sources
 
-* 테라폼 코드에서 외부 또는 다른 테라폼 코드로 정의된 정보를 참조하고자 할 때 데이터 소스를 사용합니다
+>To use information defined outside of Terraform, defined by another separate Terraform configuration, or modified by functions
 
-<https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/instance>
+  [Terraform Data sources](https://developer.hashicorp.com/terraform/language/data-sources)
 
-<https://developer.hashicorp.com/terraform/language/data-sources>
+  [Data Source: aws_instance](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/instance)
 
 ## Q14. MariaDB Backtick
 
-* 마리아DB(MariaDB)에서는 일반 오브젝트 식별자와 예약어를 구분하기 위해 억음부호(Backtick, 키보드 숫자 1 왼쪽에 위치)를 사용합니다
+* MariaDB uses a phonetic code (Backtick, located on the left side of keyboard number 1) to distinguish between general object identifiers and reserved words
 
 >Identifiers may be quoted using the backtick character - `. Quoting is optional for identifiers that don't contain special characters, or for identifiers that are not reserved words
 
@@ -188,23 +186,23 @@ git add -A
 
 ## Q16. rds_superuser role
 
-* `rdsadmin`은 자동 생성되는 사용자(역할) 중 하나로 아마존 RDS 내부적인 관리 용도로 사용
+>`rdsadmin` – A role that's created to handle many of the management tasks that the administrator with superuser privileges would perform on a standalone PostgreSQL database. This role is used internally by RDS for PostgreSQL for many management tasks.
 
-  <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.PostgreSQL.CommonDBATasks.Roles.html#Appendix.PostgreSQL.CommonDBATasks.Roles.rds_superuser>
+  [Understanding the rds_superuser role](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.PostgreSQL.CommonDBATasks.Roles.html#Appendix.PostgreSQL.CommonDBATasks.Roles.rds_superuser)
 
 ## Q17. PostgreSQL Timestamp
 
-<https://www.postgresql.org/docs/current/datatype-datetime.html>
+  [Date/Time Types](https://www.postgresql.org/docs/current/datatype-datetime.html)
 
 ## Q18. Convention over Configuration
 
 * src/main src/test directory structure origin
 
-<https://en.wikipedia.org/wiki/Convention_over_configuration>
+[Convention over configuration](https://en.wikipedia.org/wiki/Convention_over_configuration)
 
-<https://books.sonatype.com/mvnref-book/reference/installation-sect-conventionConfiguration.html>
+[Maven Reference](https://books.sonatype.com/mvnref-book/reference/installation-sect-conventionConfiguration.html)
 
-<https://docs.gradle.org/current/userguide/designing_gradle_plugins.html#convention_over_configuration>
+[Gradle Reference](https://docs.gradle.org/current/userguide/designing_gradle_plugins.html#convention_over_configuration)
 
 ## Q19. Ubuntu 22 version
 
@@ -212,19 +210,17 @@ git add -A
 
   <https://discourse.ubuntu.com/t/needrestart-for-servers/21552/1>
 
-* 업데이트를 위해서 해당 백그라운드로 실행되고 있는 서비스를 재시작 하겠느냐는 내용입니다. 운영 환경에서는 확인이 필요하지만 교육 과정 중에는 해당 사항이 없습니다
-모든 서비스 선택하고 확인하면 됩니다
+* It is about whether to restart the service running in the background for update. It needs to be checked in the production environment, but it is not applicable in training environment
+* You can select all services and select OK
 
   <https://phoenixnap.com/kb/fix-could-not-get-lock-error-ubuntu>
 
-* Signature not yet current
-
-  <https://zhang-yang.medium.com/solving-signature-not-yet-current-error-when-using-aws-in-docker-c2d8ba314a7e>
-
 ## Q20. ECR Creation error by time sync failure
 
-* VM 시간이 서버 시간과 5분 이상 차이가 나는 경우 발생하는 오류로 VM의 시간을 재설정하시기 바랍니다
+* If the container or VM time is off the standard time by more than 5 minutes, please reset the time
 * The system clock of the container is off Amazon’s clock by more than 5 minutes, the maximum allowed by Amazon’s signature algorithm
+  [Time in container is out of sync](https://forums.docker.com/t/time-in-container-is-out-of-sync/16566)
+  [Solving "Signature not yet current" Error When Using AWS in Docker](https://zhang-yang.medium.com/solving-signature-not-yet-current-error-when-using-aws-in-docker-c2d8ba314a7e)
 
 ## Q21. MobaXterm connection troubleshoot Checklist
 
@@ -269,46 +265,46 @@ git add -A
 
 ## Q24. Amazon RDS Set up EC2 connection
 
-해당 데이터베이스 메뉴에서
-
+AWS Management Console
   `RDS > Databases > targetdb(-maria)`
 
-연결이 필요한 VM을 선택해서 설정
-
+Select and set the VM that needs to be connected
   `Actions > Set up EC2 connection`
+
+[Amazon EC2 now offers an automated connection set-up solution between EC2 instance and RDS Database](https://aws.amazon.com/about-aws/whats-new/2022/10/amazon-ec2-automated-connection-solution-ec2-instance-rds-database/)
+[Connecting an EC2 instance and an RDS database automatically](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/ec2-rds-connect.html)
 
 ## Q25. AWS SCT Alert(Red exclamation) mark
 
 * Items with a red exclamation mark next to them cannot be directly translated from the source to the target
 * Right click on the schema in the left-hand panel, and click Create report
 
+[Assessment report warning message](https://docs.aws.amazon.com/SchemaConversionTool/latest/userguide/CHAP_AssessmentReport.WarningMessage.html)
+
 ## Q26. AWS UX
 
-1. 좌측 상단 AWS 로고 (Console Home)
-2. 우측 상단 [Actions] - [Revert to previous Console Home]
+1. AWS logo at the top left (Console Home)
+2. Top right [Actions] - [Revert to previous Console Home]
 
 ## Q27. Usage of Java Interface on a service layer
 
-* 서비스 레이어에서 인터페이스를 활용하는 이유
-* Mock을 사용하기 위한 용도
+* Reasons for utilizing interfaces in the service layer
+* For using Mock
 
-<https://docs.oracle.com/javase/tutorial/java/concepts/inheritance.html>
+  [What Is Inheritance?](https://docs.oracle.com/javase/tutorial/java/concepts/inheritance.html)
 
-<https://stackoverflow.com/questions/28693175/use-of-interfaces-on-a-service-layer>
+  [Use of Interfaces on a service layer](https://stackoverflow.com/questions/28693175/use-of-interfaces-on-a-service-layer)
 
-<https://stackoverflow.com/questions/11528061/i-want-to-define-a-spring-bean-class-with-no-interface>
+  [Spring Bean CLASS with NO Interface](https://stackoverflow.com/questions/11528061/i-want-to-define-a-spring-bean-class-with-no-interface)
 
 ## Q28. Spring Boot Database Initialization Using Basic SQL Scripts
-
 
 [Initialize a Database Using Basic SQL Scripts](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto.data-initialization.using-basic-sql-scripts)
 
 
 ## Q29. OpenAPI PUT vs. PATCH
 
-Use of PUT vs PATCH methods in REST API real life scenarios
-
-<https://stackoverflow.com/questions/28459418/use-of-put-vs-patch-methods-in-rest-api-real-life-scenarios>
+[Use of PUT vs PATCH methods in REST API real life scenarios](https://stackoverflow.com/questions/28459418/use-of-put-vs-patch-methods-in-rest-api-real-life-scenarios)
 
 ## Q30. StringIndexOutOfBoundsException
 
@@ -336,15 +332,15 @@ kc.bat start --log-level=all --log=console,file
 
 ## Q33. GitHub Personal Access Token
 
-* 일반적인 최소 권한의 원칙을 감안하면 필요한 정보 외에 범위를 지정하는 것은 적합하지 않은 것으로 생각됩니다
-패스워드 대신에 토큰을 쓰는 이유도 같이 생각해 보아야 하겠습니다
-* 깃허브 API에 접근하는 용도라면 새롭게 만들어진 세분화된 PAT를 사용하는게 좋겠습니다
+* Considering the general principle of least privilege, it is not considered appropriate to specify a scope other than necessary information
+* We should also think about why tokens are used instead of passwords
+* For access to the GitHub API, it is recommended to use the newly created fine-grained PAT
 
 ## Q34. Git Ignore
 
-<https://git-scm.com/docs/gitignore>
+[gitignore ](https://git-scm.com/docs/gitignore)
 
-<https://github.com/github/gitignore#a-collection-of-gitignore-templates>
+[A collection of .gitignore templates](https://github.com/github/gitignore#a-collection-of-gitignore-templates)
 
 ## Q35. JWT Signature
 
@@ -356,7 +352,7 @@ kc.bat start --log-level=all --log=console,file
 
 ## Q36. Git vs. SVN
 
->기술적인 측면도 중요하겠지만 깃이 가지고 있는 자유와 개방성이라는 사상이 회사의 보안 기준과 상충되는 부분을 어떻게 조화시킬 수 있는지에 대한 방안이 없다면 깃을 도입해서 얻을 수 있는 것은 일부 기능 개선에 그치지 않을까 생각됩니다
+* The technical aspect may be important, but if there is no way to harmonize Git's ideas of freedom and openness with the company's security standards, I think what can be obtained by introducing Git will only improve some functions
 
 ## Q37. GitHub Personal Access Token instead of password
 
@@ -397,17 +393,17 @@ $JENKINS_HOME/jobs/$JOB_NAME/builds/lastSuccessfulBuild/log
 
 [How to download a huge console output from Jenkins](https://stackoverflow.com/questions/72759260/how-to-download-a-huge-console-output-from-jenkins)
 
-<https://www.jenkins.io/doc/book/system-administration/viewing-logs/>
+[Jenkins Viewing logs](https://www.jenkins.io/doc/book/system-administration/viewing-logs/)
 
-<https://docs.gradle.org/current/userguide/logging.html>
+[Gradle Logging](https://docs.gradle.org/current/userguide/logging.html)
 
-<https://git-scm.com/docs/git-log>
+[git-log](https://git-scm.com/docs/git-log)
 
 ## Q41. VPC Network Analyze
 
-라우트 테이블의 역할이 서브넷, 인터넷게이트웨이 등이 서로 네트워크 트래픽을 주고 받을 수 있는 경로의 설정 값을 가지고 있는 자원입니다
+* The role of a route table is a resource that has setting values ​​for routes through which subnets, Internet gateways, etc. can exchange network traffic with each other.
 
-경로가 실제로 정상적으로 설정되어 있는지 간단하게 확인하시려는 거라면 커맨드 라인 방식의 네트워크 유틸리티를 이용하거나 AWS에서 제공하는 네트워크 애널라이저 등 서비스를 활용하는 방법이 있습니다
+* If you simply want to check whether the path is actually properly set, you can use a command-line network utility or a service such as a network analyzer provided by AWS.
 
 `VPC > Reachability Analyzer`
 
@@ -427,7 +423,8 @@ $JENKINS_HOME/jobs/$JOB_NAME/builds/lastSuccessfulBuild/log
 
 * Plan 단계가 단독 사용자 환경에서 수작업으로 실습 진행하는 경우에는 별다른 의미를 찾기 어렵겠지만
 * 다중 사용자 환경에서 깃옵스(GitOps) 등을 통한 자동화 프로세스를 적용시에는 워크플로우 관점에서 유용한 단계
-  <https://developer.hashicorp.com/terraform/tutorials/automation/automate-terraform>
+
+[Running Terraform in Automation](https://developer.hashicorp.com/terraform/tutorials/automation/automate-terraform)
 
 ## Q44. Terraform error on a specific AWS EC2 Instance Type
 
@@ -619,13 +616,13 @@ The error also might occur because of using a semicolon ";" at the end or incorr
 
 [2.8 Using the SQL Worksheet](https://docs.oracle.com/en/database/oracle/sql-developer/22.2/rptug/sql-developer-concepts-usage.html#GUID-FB7B5B33-3B34-497D-B12A-C30779DE2322:~:text=Execute%20Statement%20executes,Run%20Script%20occurrence.)
 
-SQL디벨로퍼(Developer)에서 `쿼리 결과(Run Statement, Query Result, Ctrl + Enter)`는 SQL 문장에 대한 수행 결과를 보여주는 내용으로 여러개의 SQL 문장을 순서대로 수행하는 `스크립트 아웃풋(Run Script, Script Output, F5)`을 보여주는 화면과는 차이가 있습니다
+In SQL Developer, `Query Result (Run Statement, Ctrl + Enter)` is the content that shows the results of execution of SQL statements, and `Script Output (Run Script that executes several SQL, F5)` is different from the screen showing
 
 [Script Output and Query Result](https://community.oracle.com/tech/developers/discussion/2201870/whats-the-difference-between-script-output-and-query-result)
 
-스크립트 아웃풋에 대한 인코딩 설정은 아래 메뉴에서 확인해 보시기 바랍니다
+* Please check the encoding settings for script output in the menu below.
 
-`Tools - Preferences - Environment - Encoding`
+  `Tools - Preferences - Environment - Encoding`
 
 ## Q59. EDB Postgres vs. PostgreSQL
 
@@ -704,9 +701,18 @@ SELECT * FROM INFORMATION_SCHEMA.SCHEMATA;
 
 클라우드쉘 또는 클라우드IDE와 동일하게 아마존 EC2 인스턴스 커넥트도 사용자 로컬 클라이언트가 직접 접속하는 것이 아니라 해당 서비스의 엔드포인트를 거쳐서 접속하게 되므로 접속하고자 하는 서비스의 시큐리티 그룹에는 해당 서비스의 CIDR가 등록되어 있어야 합니다
 
-<https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-set-up.html>
+[Set up EC2 Instance Connect](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-set-up.html)
 
-<https://aws.amazon.com/blogs/security/use-ec2-instance-connect-to-provide-secure-ssh-access-to-ec2-instances-with-private-ip-addresses/>
+[Use EC2 Instance Connect to provide secure SSH access to EC2 instances with private IP addresses](https://aws.amazon.com/blogs/security/use-ec2-instance-connect-to-provide-secure-ssh-access-to-ec2-instances-with-private-ip-addresses/)
+
+```Bash
+sudo apt update
+sudo apt install -y jq
+
+curl https://ip-ranges.amazonaws.com/ip-ranges.json > aws_ip-ranges.json
+jq '.prefixes[] | select((.region=="us-east-1" or .region=="us-west-2") and .service=="EC2_INSTANCE_CONNECT")' < aws_ip-ranges.json > ec2_instance_connect_ip_ranges.txt
+
+```
 
 ## Q70. Jenkins admin password
 
@@ -751,6 +757,8 @@ SCT, DMS를 활용한 다양한 사례를 추가로 실습해 보고 싶은 경�
 [Instance lifecycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
 
 [Terminate your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html)
+
+[Troubleshoot instance termination (shutting down)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesShuttingDown.html#terminated-instance-still-displaying)
 
 ## Q76. Gradle Listing tasks
 
@@ -810,8 +818,89 @@ https://www.baeldung.com/java-spring-mockito-mock-mockbean
 
 ## Q85. Spring Boot OAuth2 with keycloak
 
-[Spring Boot OAuth2 with keycloak for Bearer Client](https://ravthiru.medium.com/springboot-oauth2-with-keycloak-for-bearer-client-3a31f608a78)
-
 [Spring Boot Oauth2](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#web.security.oauth2.client)
 
+[Spring Boot OAuth2 with keycloak for Bearer Client](https://ravthiru.medium.com/springboot-oauth2-with-keycloak-for-bearer-client-3a31f608a78)
+
 [SpringBoot OAuth2 with Keycloak as provider](https://ravthiru.medium.com/springboot-oauth2-with-keycloak-as-provider-c31b2897e913)
+
+## Q86. Spring Boot Admin UI Customizing Available Languages
+
+https://codecentric.github.io/spring-boot-admin/current/#_customizing_available_languages
+
+## Q87. SSH through jump sever using private key in macOS 
+
+ssh -i privatekey.pem -o "ProxyCommand ssh -W %h:%p -i privatekey.pem user@jumpserverhost" user@targetserver
+
+[SSH through jump sever using private key in macOS ](https://superuser.com/questions/1344557/ssh-through-jump-sever-using-private-key-in-macbook)
+
+[PEM, DER, CRT, and CER: X.509 Encodings and Conversions](https://www.ssl.com/guide/pem-der-crt-and-cer-x-509-encodings-and-conversions/)
+
+## Q88. Characteristics of security group rules
+
+[Characteristics of security group rules](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#:~:text=Characteristics%20of%20security%20group,outbound%20traffic%20is%20allowed)
+
+## Q89. CIDR 0.0.0.0/0
+
+[What is the difference between 0.0.0.0/0 and 0.0.0.0/1?](https://serverfault.com/questions/1100250/what-is-the-difference-between-0-0-0-0-0-and-0-0-0-0-1)
+
+## Q90. kubectl Flags
+
+Single dash(-) means shorthand form of double dash(--) flags
+
+Refer to help of command
+`kubectl run --help` or `kubectl run -h`
+
+A hyphen in `all-namespaces` is not a flag mark
+
+```
+--all-namespaces
+-A
+If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace
+```
+
+## Q91. Reverse Terraform
+
+[Import Terraform Configuration](https://developer.hashicorp.com/terraform/tutorials/state/state-import)
+
+[Terraformer](https://github.com/GoogleCloudPlatform/terraformer)
+
+[TerraCognita](https://github.com/cycloidio/terracognita)
+
+## Q92. AWS Database Migration Service replication subnet group
+
+[Creating a replication subnet group](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_ReplicationInstance.VPC.html#CHAP_ReplicationInstance.VPC.Subnets)
+
+## Q93. Helm
+
+헬름과 관련한 기본적인 내용은 1주차 쿠버네티스 강의 교재 참조하시고
+
+[15_Helm.md](https://github.com/JungSangup/mspt2/blob/main/doc/%5BBook%5D%2015_Helm.md)
+
+EKS를 활용한 헬름 차트 배포와 관련된 기본 사항은 아래 워크샵 내용 참조해 보시기 바랍니다
+
+[Amazon EKS Workshop > Beginner > Helm](https://www.eksworkshop.com/beginner/060_helm/)
+
+## Q94. Jump Host
+
+어드민 서버에 접속하기 위해서는
+
+1. 로컬 환경에서 배스천 서버 퍼블릭 아이피로 접속
+2. 배스천 서버에서 어드민 서버 프라이빗 아이피로 접속
+
+2단계의 과정을 거쳐야 하는데
+
+모바엑스텀에 어드민 서버와 배스천 서버 정보를 모두 입력해서 한번에 접속하도록 한다고 이해하셔도 좋겠습니다
+
+[AWS Bastion Host / Jump Box](https://dev.to/aws-builders/aws-bastion-host-jump-box-5h87)
+
+[SSH connection to EC2 private instance](https://res.cloudinary.com/practicaldev/image/fetch/s--CHSpu-V5--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8cgwqc8m0i9e26be1j9u.png)
+
+## Q95. Argo CD Applications
+
+[Argo CD Applications](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#applications)
+
+## Q96. Jenkins Pipeline Syntax
+
+[Pipeline Syntax When Built-in Conditions](https://www.jenkins.io/doc/book/pipeline/syntax/#built-in-conditions)
+
