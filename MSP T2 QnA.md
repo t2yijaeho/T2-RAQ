@@ -80,8 +80,7 @@
 4. Argo CD `istio` app create
 5. AWS management console `EC2>Load Balancers` Confirm Network Load balancer active state
 6. Argo CD `emarket` app create
-
-* AWS management console `Certificate Manager > Certificates Key Status`
+7. AWS management console `Certificate Manager > Certificates Key Status`
 
 ## Q05. Oracle to PostgreSQL Open Source Migration Tool
 
@@ -190,7 +189,10 @@ git add -A
 
   [Understanding the rds_superuser role](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.PostgreSQL.CommonDBATasks.Roles.html#Appendix.PostgreSQL.CommonDBATasks.Roles.rds_superuser)
 
-## Q17. PostgreSQL Timestamp
+## Q17. PostgreSQL Schema, Timestamp
+
+  [PostgreSQL Schema](https://www.postgresqltutorial.com/postgresql-administration/postgresql-schema/)
+  [Difference Between Schema and Database](https://blog.devart.com/difference-between-schema-database.html)
 
   [Date/Time Types](https://www.postgresql.org/docs/current/datatype-datetime.html)
 
@@ -421,8 +423,8 @@ $JENKINS_HOME/jobs/$JOB_NAME/builds/lastSuccessfulBuild/log
 
 ## Q43. Terraform Plan
 
-* Plan 단계가 단독 사용자 환경에서 수작업으로 실습 진행하는 경우에는 별다른 의미를 찾기 어렵겠지만
-* 다중 사용자 환경에서 깃옵스(GitOps) 등을 통한 자동화 프로세스를 적용시에는 워크플로우 관점에서 유용한 단계
+* If the `Plan` phase is practiced manually in a single user environment, it will be difficult to find any meaning, but
+* Useful steps from a workflow perspective when applying automation processes through GitOps in a multi-user environment
 
 [Running Terraform in Automation](https://developer.hashicorp.com/terraform/tutorials/automation/automate-terraform)
 
@@ -441,8 +443,8 @@ $JENKINS_HOME/jobs/$JOB_NAME/builds/lastSuccessfulBuild/log
 
 ## Q46. Terraform Variable Definition
 
-* 관행상 또는 기준 및 절차서에 명시된 경우가 아니라면 입력 변수 정의를 위한 변수 블록(Variable block)은 모든 테라폼 코드에 존재할 수 있습니다
-* 변수 정의 파일(.tfvars)은 변수명과 할당값으로 구성되어 코드실행시에 지정하거나 자동으로 불러오도록 구성할 수 있습니다
+* Variable blocks for defining input variables can exist in all Terraform code unless specified by convention or standards and procedures.
+* The variable definition file (.tfvars) consists of variable names and assigned values, and can be configured to be assigned or automatically called at code execution.
 
 <https://developer.hashicorp.com/terraform/language/values/variables#variable-definitions-tfvars-files>
 
@@ -466,30 +468,32 @@ TableSizeBytes
 
 ## Q49. Terraform variables
 
-1. 차일드 모듈(Child Module)에서만 필요한 경우 로컬(Local values, Locals)을 사용할 수 있습니다
+1. You can use Local values ​​(Locals) if you only need it in Child Modules
     <https://developer.hashicorp.com/terraform/language/values/locals>
 
-    조건에 따라서 다른 값이 필요한 경우
+    When different values ​​are required depending on conditions
     <https://stackoverflow.com/questions/60084611/how-best-to-handle-multiple-tfvars-files-that-use-common-tf-files>
 
-2. 차일드 모듈의 아웃풋(Outputs) 값은  module.<MODULE NAME>.<OUTPUT NAME> 형태로 사용
+2. Output values ​​of child modules are used in the form of module.<MODULE NAME>.<OUTPUT NAME>
+
     <https://developer.hashicorp.com/terraform/language/values/outputs#accessing-child-module-outputs>
 
-3. `vpc_id = var.vpc_id`
-  vpc_id 가 리소스 블록(Resource Blocks) 안에 있는 거라면 vpc_id 는 해당 리소스를 설정하기 위한 컨피그레이션 매개변수(Configuration argument)이고 var.vpc_id는 해당 변수에 값을 설정하기 위한 입력 변수(Input variable) 입니다
+4. `vpc_id = var.vpc_id`
+  If vpc_id is in Resource Blocks, vpc_id is a configuration argument to set the resource, and var.vpc_id is an input variable to set the value of the variable
 
   [Resource Blocks](https://developer.hashicorp.com/terraform/language/resources/syntax)
   [Input Variables](https://developer.hashicorp.com/terraform/language/values/variables)
+
 ## Q50. Domain Name Service
 
-1. route 53 > domain > hosted zone 도메인 정보와 eks-values.yaml 일치 여부 확인
-2. route 53 > domain > hosted zone 도메인 정보 로드밸런서 매핑여부 확인 및 필요시 수정
+1. `route 53 > domain > hosted zone` check whether domain information matches eks-values.yaml
+2. `route 53 > domain > hosted zone` Check wheter domain information matches load balancer and modify if necessary
 
-## Q51. Helm Chart 반영
+## Q51. Helm Chart Apply
 
-1. 헬름 차트(Helm Chart) eks-values.yaml 파일 수정
-2. 교재 2-1-5,  2-1-6 수행하여 깃(Git) 리포지터리(Repository) 반영
-3. 아르고CD(Argo CD)에서 이마켓 앱 동기화(Synchronize)
+1. Modify Helm Chart eks-values.yaml file
+2. Apply textbook 2-1-5, 2-1-6 for Git repository
+3. Synchronize eMarket app on ArgoCD
 
 ## Q52. Istio path
 
@@ -501,8 +505,8 @@ istio-ingressgateway
 error validating data: [unknown object type "nil" in Service.metadata.annotations.service.beta.kubernetes.io/aws-load-balancer-eip-allocations, unknown object type "nil" in Service.metadata.annotations.service.beta.kubernetes.io/aws-load-balancer-ssl-cert]
 ```
 
-* 경로(path)를 잘못 설정한 경우 발생
-* 경로는 istio를 키인(Key in)하는 입력이 아니라 istio로 검색하여 조회되는 항목을 선택
+* Occurs when the path is set incorrectly
+* The path is not an key-in input, but selects items to be searched by searching with istio
 
 ## Q53. Argo CD app delete
 
@@ -514,6 +518,7 @@ error validating data: [unknown object type "nil" in Service.metadata.annotation
 
 * Enters a deletion in progress state
 * After deleting all the dependent objects, the controller deletes the owner object
+* 
 ### background cascading deletion
 
 * deletes the owner object immediately  
@@ -526,12 +531,12 @@ error validating data: [unknown object type "nil" in Service.metadata.annotation
 
 ## Q54. MinIO
 
-* 민아이오(MinIO)는 멀티클라우드 오브젝트 스토리지 솔루션으로 이마켓앱에서 이미지 리소스를 저장하는데 사용되고 있습니다
-    <https://min.io/docs/minio/kubernetes/upstream/>
+* MinIO is a multi-cloud object storage solution used to store image resources in eMarket App.
+  <https://min.io/docs/minio/kubernetes/upstream/>
 
-* 사이트 접속이 잘 되더라도 이미지가 보이지 않는다면 재설정이 필요할 수 있습니다
+* If you can't see the image even though you can access the site, you may need to reconfigure
 
-* 이미지 등록 배치 작업이 끝나면 다른 파드와 달리 `실행(Running)` 상태로 서비스를 제공하지 않고 `완료(Completed)` 처리됩니다
+* When the image registration batch task is finished, unlike other pods, it is treated as ‘Completed’ rather than providing a service in a ‘Running’ state
 
 ## Q55. Amazon VPC Subnet sizing
 
@@ -590,8 +595,8 @@ warehouse, and/or production site of a company. Does not store addresses / locat
 >*Cause:    
 *Action:
 
-아래 3개 SQL 문장에 세미콜론이 누락되어 발생하는 오류입니다
-코멘트 내용이 추가되지 않아도 실습에는 영향이 없습니다
+The error is caused by missing semicolons in the three SQL statements below.
+Even if the comment content is not added, the lab is not affected
 
 ```
 COMMENT ON TABLE regions 
@@ -635,6 +640,7 @@ In SQL Developer, `Query Result (Run Statement, Ctrl + Enter)` is the content th
 
   `Tools - Preferences - Environment - Encoding`
 
+<https://forums.oracle.com/ords/apexds/post/sqldeveloper-editor-encoding-7422>
 ## Q59. EDB Postgres vs. PostgreSQL
 
 <https://www.commandprompt.com/education/enterprisedb-vs-postgresql/>
@@ -655,7 +661,7 @@ In SQL Developer, `Query Result (Run Statement, Ctrl + Enter)` is the content th
 
 ## Q62. AWS DMS CDC
 
-* DMS는 일회성 전환이 아닌 지속적인 데이터 연동 등을 위한 사용도 가능
+* DMS can also be used for continuous change data capture rather than one-time conversion
   
   <https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Task.CDC.html>
 
@@ -669,11 +675,11 @@ SELECT * FROM INFORMATION_SCHEMA.SCHEMATA;
 
 ## Q64. MarkDown Viewer Dark mode
 
-마크다운 뷰어 업데이트 후에 윈도우즈 다크모드에서 HTML 태그 관련 오류 발생시
+Difficulties related to HTML tags in Windows Dark Mode after Markdown Viewer update
 
-* 윈도우즈 다크모드 해제
-* 마크다운 뷰어 테마 변경 또는 
-* VS코드 와 같은 다른 마크다운 뷰어 사용
+* Disable Windows dark mode
+* Change markdown viewer theme or
+* Use another markdown viewer like VS Code
 
 ## Q65. AWS DMS Selection rules and actions priority
 
@@ -687,8 +693,8 @@ SELECT * FROM INFORMATION_SCHEMA.SCHEMATA;
 
 ## Q67. AWS Regions
 
-* 서비스 사용료 및 부하를 고려하여 반별로 리전을 구분하여 운영
-* 리전별로 제공되는 서비스는 차이가 있으며 네트워크 지연시간에도 차이가 있음
+* Operate by classifying regions by class considering service usage fee and load
+* Services provided by region are different and network latency is also different.
   
 [AWS Regional Services List](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/?nc1=h_ls)
 
@@ -702,7 +708,7 @@ SELECT * FROM INFORMATION_SCHEMA.SCHEMATA;
 
 ## Q68. Windows Logo
 
-윈도우 물결무늬 로고의 사용은 2012년 8월 23일에 종료되었습니다
+Use of the Windows wave logo ended on August 23, 2012
 
 [Microsoft Unveils a New Look](https://blogs.microsoft.com/blog/2012/08/23/microsoft-unveils-a-new-look/)
 
@@ -710,7 +716,7 @@ SELECT * FROM INFORMATION_SCHEMA.SCHEMATA;
 
 ## Q69. Amazon EC2 Instance Connect
 
-클라우드쉘 또는 클라우드IDE와 동일하게 아마존 EC2 인스턴스 커넥트도 사용자 로컬 클라이언트가 직접 접속하는 것이 아니라 해당 서비스의 엔드포인트를 거쳐서 접속하게 되므로 접속하고자 하는 서비스의 시큐리티 그룹에는 해당 서비스의 CIDR가 등록되어 있어야 합니다
+As with Cloud Shell or Cloud IDE, Amazon EC2 Instance Connect is not accessed directly by the user's local client, but through the endpoint of the service, so the CIDR of the service to be accessed must be registered in the security group of the service.
 
 [Set up EC2 Instance Connect](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-set-up.html)
 
@@ -738,8 +744,8 @@ jq '.prefixes[] | select((.region=="us-east-1" or .region=="us-west-2") and .ser
 
 ## Q70. Jenkins admin password
 
-일반적으로 중요한 패스워드는 복호화가 가능하도록 암호화 하지 않습니다
-젠킨스 초기 관리자 패스워드는 설치시에 사용하는 용도로만 제공되고 있으며 Base64와 같은 텍스트 변환 알고리즘으로 패스워드를 암호화 하지는 않습니다
+In general, sensitive passwords are not encrypted in such a way that they can be decrypted.
+The Jenkins initial administrator password is provided only for use during installation, and the password is not encrypted with a text conversion algorithm such as Base64.
 
 Initial admin password for jenkins
 [Setup Jenkins On Kubernetes](https://www.jenkins.io/doc/book/installing/kubernetes/)
@@ -749,27 +755,29 @@ Initial admin password for jenkins
 
 ## Q71. git remote
 
-깃 리모트 명령어를 통해서 현재 로컬 저장소에 저장되어 있는 코드를 원격으로 업로드 할 저장소 위치를 확인할 수 있습니다. 다수의 저장소나 브랜치가 있는 경우에 원하는 위치가 올바르게 지정되어 있는지 확인할 수 있습니다
-
+Through the Git Remote command, you can check the storage location to remotely upload the code currently stored in the local repository. If you have multiple repositories or branches, you can check that the desired locations are specified correctly
 
 ## Q72. Istio concepts
 
-이스티오는 서비스 메쉬(Service Mesh) 솔루션 중 하나로 이마켓과 같은 마이크로서비스아키텍처에서 발생할 수 있는 서비스간 연결 복잡성 등을 해결하기 위해 적용되었으며 개별 파드가 수행하던 보안, 트래픽, 모니터링 등 기능을 사이드카 프록시(Side Car Proxy)로 비즈니스 로직과 분리하여 통합 처리하도록 하고 있습니다.
-자세한 내용은 운영 영역 4일차 이론 교재 2장. Deploy Application과 강의 동영상을 우선 참고하시기 바랍니다
+Istio is one of the Service Mesh solutions, which is applied to solve the complexity of connection between services that can occur in microservice architectures using integrated Side Car Proxy, which is separated from business logic
+For more information, see chapter 2 of the operational domain day 4 theory textbook. Please refer to the Deploy Application and lecture videos first.
 
 <https://istio.io/latest/docs/concepts/>
 <https://www.opsmx.com/blog/what-is-service-mesh-and-why-is-it-necessary/>
 
 ## Q73. AWS DMS Tasks
 
-AWS DMS의 다양한 기능과 관련해서는 직접 사용자 가이드 문서를 참조하셔도 좋겠습니다
+ Recommend that you refer directly to the user guide for the various features of AWS DMS
 
 [AWS Database Migration Service User Guide](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.html)
 
-SCT, DMS를 활용한 다양한 사례를 추가로 실습해 보고 싶은 경우 아래 내용도 참조해 보시기 바랍니다
+If you want to practice various cases using SCT and DMS, please also refer to the contents below
 
 [AWS Database Migration Workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/77bdff4f-2d9e-4d68-99ba-248ea95b3aca/en-US)
 
+[Sources for AWS SCT](https://docs.aws.amazon.com/SchemaConversionTool/latest/userguide/CHAP_Source.html)
+
+[Sources for data migration](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.html)
 ## Q74. Remote Desktop Connection (RDP) Certificate Warnings
 
 (https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/remote-desktop-connection-rdp-certificate-warnings/ba-p/259301)
@@ -820,14 +828,14 @@ https://www.baeldung.com/java-spring-mockito-mock-mockbean
 
 ## Q83. H2 connection mode
 
-* H2를 실습에서 인메모리 (In-Memory) 데이터베이스로 사용하고 있지만 디스크 기반으로도 사용 가능하며 URL에 따라 다양한 설정을 지원합니다
+Although H2 is often used as an in-memory database in practice, it can also be used disk-based and supports various settings depending on the URL.
 
 [Database URL Overview](http://www.h2database.com/html/features.html#database_url)
 
 
 ## Q84. MariaDB Reserved Words
 
-필요한 경우 관련 문서는 공식 사이트 또는 버전별 소스파일을 참조하시는게 좋겠습니다
+ It is recommended to refer to the official website or source files for each version for related documents
 
 >Reserved words cannot be used as Identifiers, unless they are quoted.
 >The definitive list of reserved words for each version can be found by examining the sql/lex.h and sql/sql_yacc.yy files.
@@ -895,24 +903,24 @@ If present, list the requested object(s) across all namespaces. Namespace in cur
 
 ## Q93. Helm
 
-헬름과 관련한 기본적인 내용은 1주차 쿠버네티스 강의 교재 참조하시고
+For basic Helm-related guide, refer to the Kubernetes lecture textbook
 
 [15_Helm.md](https://github.com/JungSangup/mspt2/blob/main/doc/%5BBook%5D%2015_Helm.md)
 
-EKS를 활용한 헬름 차트 배포와 관련된 기본 사항은 아래 워크샵 내용 참조해 보시기 바랍니다
+For the basics of deploying Helm charts using EKS, please see the workshop below.
 
 [Amazon EKS Workshop > Beginner > Helm](https://www.eksworkshop.com/beginner/060_helm/)
 
 ## Q94. Jump Host
 
-어드민 서버에 접속하기 위해서는
+To connect to the admin server
 
-1. 로컬 환경에서 배스천 서버 퍼블릭 아이피로 접속
-2. 배스천 서버에서 어드민 서버 프라이빗 아이피로 접속
+1. Connect to the public IP of the bastion server in the local environment
+2. Connect to the admin server private IP from the bastion server
 
-2단계의 과정을 거쳐야 하는데
+You have to go through a two-step process
 
-모바엑스텀에 어드민 서버와 배스천 서버 정보를 모두 입력해서 한번에 접속하도록 한다고 이해하셔도 좋겠습니다
+I hope you understand that I enter all the admin server and bastion server information in MobaXterm to connect at once
 
 [AWS Bastion Host / Jump Box](https://dev.to/aws-builders/aws-bastion-host-jump-box-5h87)
 
@@ -928,3 +936,44 @@ EKS를 활용한 헬름 차트 배포와 관련된 기본 사항은 아래 워�
 
 
 [DNS attributes in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support)
+
+## Q97. Amazon RDS Endpoint naming format
+
+>1.Is there some way to "predict" or otherwise determine what the hexchars will be?
+>
+>You can't predict it, but once you create at least one instance in a region you will know what it is for your account in that region (and it will be the same for all RDS instances belonging to the same account in that region).
+
+>2.Is there a way to set this?
+>
+>No. The "hexchars" component is generated internally and is unique to your AWS account in each region (cannot be changed). The "hexchars" will be different for the same account in a different region.
+
+>3.Is the hexchars consistent if the instance ID is consistent?
+>
+>Yes. You can delete an instance and if you create another with the same name, it will have the same endpoint address as the original instance (for the same AWS account in the same region). Also, if you rename an instance from "myinst1" to "myinst2", the first component is the only that changes and the "hexchars.region.rds.amazonaws.com" remains the same.
+
+[RDS endpoint name format](https://stackoverflow.com/questions/34990104/rds-endpoint-name-format)
+
+## Q98. Amazon EBS CSI driver
+
+>CSI drivers
+>* replace the Kubernetes "in-tree" storage drivers that exist in the Kubernetes project source code.
+>* work with storage providers, such as Amazon EBS.
+>* provide a simplified plugin model that make it easier for storage providers like AWS to release features and maintain support without depending on the Kubernetes release cycle.
+
+
+[Amazon EKS Kubernetes versions](https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html)
+
+[Updating an Amazon EKS cluster Kubernetes version](https://docs.aws.amazon.com/eks/latest/userguide/update-cluster.html)
+
+[Kubernetes CSI Developer Documentation](https://kubernetes-csi.github.io/docs/introduction.html)
+
+[Amazon EBS CSI driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html)
+
+[Amazon EBS CSI driver Helm chart](https://github.com/kubernetes-sigs/aws-ebs-csi-driver/tree/master/charts/aws-ebs-csi-driver)
+
+[Amazon EBS CSI migration frequently asked questions](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi-migration-faq.html)
+
+
+## Q99. Amazon EKS IAM Roles for Service Accounts
+
+[IAM Roles for Service Accounts](https://eksctl.io/usage/iamserviceaccounts/)
