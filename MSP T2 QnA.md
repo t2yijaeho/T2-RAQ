@@ -468,32 +468,41 @@ TableSizeBytes
 
 ## Q49. Terraform variables
 
-1. You can use Local values ​​(Locals) if you only need it in Child Modules
-    <https://developer.hashicorp.com/terraform/language/values/locals>
+1. You can use [Local Values](https://developer.hashicorp.com/terraform/language/values/locals) ​​(Locals) if you only need it in Child Modules
+    
 
     When different values ​​are required depending on conditions
-    <https://stackoverflow.com/questions/60084611/how-best-to-handle-multiple-tfvars-files-that-use-common-tf-files>
+
+    [Handle multiple .tfvars files that use common .tf files](https://stackoverflow.com/questions/60084611/how-best-to-handle-multiple-tfvars-files-that-use-common-tf-files)
 
 2. Output values ​​of child modules are used in the form of module.<MODULE NAME>.<OUTPUT NAME>
 
-    <https://developer.hashicorp.com/terraform/language/values/outputs#accessing-child-module-outputs>
+    [Accessing Child Module Outputs](https://developer.hashicorp.com/terraform/language/values/outputs#accessing-child-module-outputs)
 
-4. `vpc_id = var.vpc_id`
+3. `vpc_id = var.vpc_id`
   If vpc_id is in Resource Blocks, vpc_id is a configuration argument to set the resource, and var.vpc_id is an input variable to set the value of the variable
 
-  [Resource Blocks](https://developer.hashicorp.com/terraform/language/resources/syntax)
-  [Input Variables](https://developer.hashicorp.com/terraform/language/values/variables)
+    [Resource Blocks](https://developer.hashicorp.com/terraform/language/resources/syntax)
+
+    [Input Variables](https://developer.hashicorp.com/terraform/language/values/variables)
 
 ## Q50. Domain Name Service
 
-1. `route 53 > domain > hosted zone` check whether domain information matches eks-values.yaml
-2. `route 53 > domain > hosted zone` Check wheter domain information matches load balancer and modify if necessary
+```Text
+route 53 > domain > hosted zone
+```
+
+1. Check whether domain information matches eks-values.yaml
+
+2. Check wheter domain information matches load balancer and modify if necessary
 
 ## Q51. Helm Chart Apply
 
-1. Modify Helm Chart eks-values.yaml file
-2. Apply textbook 2-1-5, 2-1-6 for Git repository
-3. Synchronize eMarket app on ArgoCD
+1. Modify Helm Chart `eks-values.yaml` file
+
+2. Apply textbook `2-1-5`, `2-1-6` for Git repository
+
+3. Synchronize eMarket app on `ArgoCD`
 
 ## Q52. Istio path
 
@@ -506,6 +515,7 @@ error validating data: [unknown object type "nil" in Service.metadata.annotation
 ```
 
 * Occurs when the path is set incorrectly
+
 * The path is not an key-in input, but selects items to be searched by searching with istio
 
 ## Q53. Argo CD app delete
@@ -517,37 +527,38 @@ error validating data: [unknown object type "nil" in Service.metadata.annotation
 ### Foreground cascading deletion
 
 * Enters a deletion in progress state
+
 * After deleting all the dependent objects, the controller deletes the owner object
-* 
+
 ### background cascading deletion
 
 * deletes the owner object immediately  
+
 * controller cleans up the dependent objects in the background
 
 [Kubernetes Cluster Garbage Collection Cascading deletion](https://kubernetes.io/docs/concepts/architecture/garbage-collection/#cascading-deletion)
 
-[Change default deletion propagation policy from foreground to background #5724
-](https://github.com/argoproj/argo-cd/issues/5724)
+[Change default deletion propagation policy from foreground to background](https://github.com/argoproj/argo-cd/issues/5724)
 
 ## Q54. MinIO
 
 * MinIO is a multi-cloud object storage solution used to store image resources in eMarket App.
-  <https://min.io/docs/minio/kubernetes/upstream/>
+
+  [MinIO Object Storage](https://min.io/docs/minio/kubernetes/upstream/)
 
 * If you can't see the image even though you can access the site, you may need to reconfigure
 
-* When the image registration batch task is finished, unlike other pods, it is treated as ‘Completed’ rather than providing a service in a ‘Running’ state
+* When the image registration batch task is finished, unlike other pods, it is treated as ***Completed*** rather than providing a service in a ***Running*** state
 
 ## Q55. Amazon VPC Subnet sizing
 
 [CIDR Block Calculator](https://cidr.xyz)
 
-<https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html#subnet-sizing>
+[Subnet sizing](https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html#subnet-sizing)
 
-<https://stackoverflow.com/questions/55320836/how-to-calculate-total-ips-of-a-subnet-in-aws>
+[How to calculate total ip's of a subnet in AWS](https://stackoverflow.com/questions/55320836/how-to-calculate-total-ips-of-a-subnet-in-aws)
 
-
-* subnet with CIDR block 10.0.0.0/24, the following five IP addresses are reserved
+* In Amazon VPC subnet with CIDR block 10.0.0.0/24, the following five IP addresses are reserved
 
 ```text
 10.0.0.0: Network address
@@ -595,7 +606,7 @@ warehouse, and/or production site of a company. Does not store addresses / locat
 >*Cause:    
 *Action:
 
-The error is caused by missing semicolons in the three SQL statements below.
+This error is caused by missing semicolons in the three SQL statements below.
 Even if the comment content is not added, the lab is not affected
 
 ```
@@ -618,7 +629,7 @@ An UPDATE statement with an INNER JOIN
 If the SQL syntax is incorrect.
 The error also might occur because of using a semicolon ";" at the end or incorrect syntax since the other causes involve joins.
 
-<https://confluence.atlassian.com/bitbucketserverkb/ora-00933-sql-command-not-properly-ended-error-while-starting-bitbucket-server-1086416714.html>
+["ORA-00933: sql command not properly ended" error](https://confluence.atlassian.com/bitbucketserverkb/ora-00933-sql-command-not-properly-ended-error-while-starting-bitbucket-server-1086416714.html)
 
 ## Q58. Query Result vs. Script Output
 
@@ -640,30 +651,31 @@ In SQL Developer, `Query Result (Run Statement, Ctrl + Enter)` is the content th
 
   `Tools - Preferences - Environment - Encoding`
 
-<https://forums.oracle.com/ords/apexds/post/sqldeveloper-editor-encoding-7422>
+[SQLDeveloper Editor Encoding](https://forums.oracle.com/ords/apexds/post/sqldeveloper-editor-encoding-7422)
+
 ## Q59. EDB Postgres vs. PostgreSQL
 
-<https://www.commandprompt.com/education/enterprisedb-vs-postgresql/>
+[EnterpriseDB (EDB) vs PostgreSQL](https://www.commandprompt.com/education/enterprisedb-vs-postgresql/)
 
-<https://www.enterprisedb.com/blog/comparing-edb-postgres-platform-and-postgresql>
+[Comparing the EDB Postgres Platform and PostgreSQL](https://www.enterprisedb.com/blog/comparing-edb-postgres-platform-and-postgresql)
 
 ## Q60. PostgreSQL Tablespaces
 
-<https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts.General.FeatureSupport.Tablespaces>
+[Tablespaces for RDS for PostgreSQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts.General.FeatureSupport.Tablespaces)
 
-<https://www.postgresql.org/docs/current/manage-ag-tablespaces.html>
+[PostgreSQL Tablespaces](https://www.postgresql.org/docs/current/manage-ag-tablespaces.html)
 
 ## Q61. PostgreSQL Quote Escape
 
-<https://www.postgresql.org/docs/current/sql-syntax-lexical.html>
+[PostgreSQL Lexical Structure](https://www.postgresql.org/docs/current/sql-syntax-lexical.html)
 
-<https://stackoverflow.com/questions/57430988/postgres-escape-single-and-double-quotes-in-text-field>
+[Postgres Escape Single and Double Quotes in Text Field](https://stackoverflow.com/questions/57430988/postgres-escape-single-and-double-quotes-in-text-field)
 
 ## Q62. AWS DMS CDC
 
 * DMS can also be used for continuous change data capture rather than one-time conversion
   
-  <https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Task.CDC.html>
+  [Creating tasks for ongoing replication using AWS DMS](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Task.CDC.html)
 
 ## Q63. MariaDB character set and collation
 
@@ -689,7 +701,7 @@ Difficulties related to HTML tags in Windows Dark Mode after Markdown Viewer upd
 
 ## Q66. Troubleshoot connecting AWS EC2 Linux instance
 
-<https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html>
+[Troubleshoot connecting to your Linux instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)
 
 ## Q67. AWS Regions
 
@@ -728,9 +740,6 @@ Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 Get-PSRepository -Name PSGallery
 Install-Module -Name AWS.Tools.Installer
 Install-Module -Name AWS.Tools.Installer -Force
-
-
-
 ```
 
 ```Bash
@@ -739,7 +748,6 @@ sudo apt install -y jq
 
 curl https://ip-ranges.amazonaws.com/ip-ranges.json > aws_ip-ranges.json
 jq '.prefixes[] | select((.region=="us-east-1" or .region=="us-west-2") and .service=="EC2_INSTANCE_CONNECT")' < aws_ip-ranges.json > ec2_instance_connect_ip_ranges.txt
-
 ```
 
 ## Q70. Jenkins admin password
@@ -747,10 +755,11 @@ jq '.prefixes[] | select((.region=="us-east-1" or .region=="us-west-2") and .ser
 In general, sensitive passwords are not encrypted in such a way that they can be decrypted.
 The Jenkins initial administrator password is provided only for use during installation, and the password is not encrypted with a text conversion algorithm such as Base64.
 
-Initial admin password for jenkins
-[Setup Jenkins On Kubernetes](https://www.jenkins.io/doc/book/installing/kubernetes/)
+* Initial admin password for jenkins
 
-[Reset Jenkins Admin User Password](https://medium.com/@selvarajk/how-to-reset-jenkins-admin-user-password-6fb29d4398bb)
+  [Setup Jenkins On Kubernetes](https://www.jenkins.io/doc/book/installing/kubernetes/)
+
+  [Reset Jenkins Admin User Password](https://medium.com/@selvarajk/how-to-reset-jenkins-admin-user-password-6fb29d4398bb)
 
 
 ## Q71. git remote
@@ -760,10 +769,12 @@ Through the Git Remote command, you can check the storage location to remotely u
 ## Q72. Istio concepts
 
 Istio is one of the Service Mesh solutions, which is applied to solve the complexity of connection between services that can occur in microservice architectures using integrated Side Car Proxy, which is separated from business logic
-For more information, see chapter 2 of the operational domain day 4 theory textbook. Please refer to the Deploy Application and lecture videos first.
 
-<https://istio.io/latest/docs/concepts/>
-<https://www.opsmx.com/blog/what-is-service-mesh-and-why-is-it-necessary/>
+For more information, see chapter 2 of the operational domain in day 4 theory textbook. Please refer to the Deploy Application and lecture videos first.
+
+[Istio Concepts](https://istio.io/latest/docs/concepts/)
+
+[What is Service Mesh and Why is it Necessary for Kubernetes?](https://www.opsmx.com/blog/what-is-service-mesh-and-why-is-it-necessary/)
 
 ## Q73. AWS DMS Tasks
 
@@ -780,7 +791,7 @@ If you want to practice various cases using SCT and DMS, please also refer to th
 [Sources for data migration](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.html)
 ## Q74. Remote Desktop Connection (RDP) Certificate Warnings
 
-(https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/remote-desktop-connection-rdp-certificate-warnings/ba-p/259301)
+[Remote Desktop Connection (RDP) - Certificate Warnings](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/remote-desktop-connection-rdp-certificate-warnings/ba-p/259301)
 
 ## Q75. Amazon EC2 Instance lifecycle
 
@@ -801,6 +812,11 @@ If you want to practice various cases using SCT and DMS, please also refer to th
 ## Q78. Spring Boot Configuration
 
 [Developing Your First Spring Boot Application](https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started.html#getting-started.first-application)
+
+[4.4.1 Dependency injection](https://docs.spring.io/spring-framework/docs/4.0.x/spring-framework-reference/html/beans.html#beans-factory-collaborators:~:text=4.4.1%C2%A0Dependency%20injection)
+
+1. Constructor-based dependency injection
+2. Setter-based dependency injection
 
 ## Q79. Annotation Interface ExtendWith
 
