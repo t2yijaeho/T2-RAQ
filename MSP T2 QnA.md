@@ -40,7 +40,7 @@
 
 
 * There may be differences depending on the version, so you need to check the version when referring to the guide document
-* The version used for practice is 3.0.1
+* The version used for this lab is 3.0.1
 
   [3.1.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md)
 
@@ -423,7 +423,7 @@ $JENKINS_HOME/jobs/$JOB_NAME/builds/lastSuccessfulBuild/log
 
 ## Q43. Terraform Plan
 
-* If the `Plan` phase is practiced manually in a single user environment, it will be difficult to find any meaning, but
+* If the `Plan` phase is applied manually in a single user environment, it will be difficult to find any meaning, but
 * Useful steps from a workflow perspective when applying automation processes through GitOps in a multi-user environment
 
 [Running Terraform in Automation](https://developer.hashicorp.com/terraform/tutorials/automation/automate-terraform)
@@ -782,7 +782,7 @@ For more information, see chapter 2 of the operational domain in day 4 theory te
 
 [AWS Database Migration Service User Guide](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.html)
 
-If you want to practice various cases using SCT and DMS, please also refer to the contents below
+If you want to apply various cases using SCT and DMS, please also refer to the contents below
 
 [AWS Database Migration Workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/77bdff4f-2d9e-4d68-99ba-248ea95b3aca/en-US)
 
