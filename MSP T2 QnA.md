@@ -840,7 +840,7 @@ https://mybatis.org/mybatis-3/getting-started.html
 
 ## Q82. Mockbean
 
-https://www.baeldung.com/java-spring-mockito-mock-mockbean
+[Mockito.mock() vs @Mock vs @MockBean](https://www.baeldung.com/java-spring-mockito-mock-mockbean)
 
 ## Q83. H2 connection mode
 
@@ -872,7 +872,7 @@ Although H2 is often used as an in-memory database in practice, it can also be u
 
 ## Q86. Spring Boot Admin UI Customizing Available Languages
 
-https://codecentric.github.io/spring-boot-admin/current/#_customizing_available_languages
+[Spring Boot Admin UI Customizing Available Languages](https://codecentric.github.io/spring-boot-admin/current/#_customizing_available_languages)
 
 ## Q87. SSH through jump sever using private key in macOS 
 
@@ -929,14 +929,12 @@ For the basics of deploying Helm charts using EKS, please see the workshop below
 
 ## Q94. Jump Host
 
-To connect to the admin server
+To connect to the admin server you have to go through a two-step process
 
 1. Connect to the public IP of the bastion server in the local environment
 2. Connect to the admin server private IP from the bastion server
 
-You have to go through a two-step process
-
-I hope you understand that I enter all the admin server and bastion server information in MobaXterm to connect at once
+I hope you understand that enter all the admin server and bastion server information in MobaXterm to connect at once
 
 [AWS Bastion Host / Jump Box](https://dev.to/aws-builders/aws-bastion-host-jump-box-5h87)
 
