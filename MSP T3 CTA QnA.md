@@ -2,7 +2,7 @@
 
 ## Day 1
 
-[AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html)
+### [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html)
 
 - Operational excellence
 - Security
@@ -13,7 +13,7 @@
 
 ## Day 2
 
-[AWS Well-Architected Labs](https://wellarchitectedlabs.com/)
+### [AWS Well-Architected Labs](https://wellarchitectedlabs.com/)
 
 ## Day 3
 
@@ -73,30 +73,57 @@ When downloading module package directories in Terraform, if it is configured to
 ### GitOps Console 
 
 - Commit: Push to a Git repository
+- PaC Install: Create Package Directory to a Git repository and Push Package
 - Register: Create an Argo CD application
 - Sync: Synchronize an Argo CD application
 
 ### VS Code Remote SSH - The process tried to write to a nonexistent pipe
 
-This error message can occur for several reasons when using VS Code's Remote-SSH extension. 
+This error message can occur for several reasons when using VS Code's Remote-SSH extension.
 
-- One possible solution is to add the absolute file path to a custom SSH config file (C:\\Users\\{USERNAME}\\.ssh\\config) ¹. 
+- One possible solution is to add the absolute file path to a custom SSH config file (C:\\Users\\{USERNAME}\\.ssh\\config)
 
-- Another solution is to delete the known_hosts file under the directory C:\\Users\\[your-username]\\.ssh ¹. Have you tried any of these solutions?
+- Another solution is to delete the known_hosts file under the directory C:\\Users\\[your-username]\\.ssh
 
-(1) [SSH - VScode remote connection error: The process tried to write to a nonexistent pipe](https://stackoverflow.com/questions/60335069/vscode-remote-connection-error-the-process-tried-to-write-to-a-nonexistent-pipe)
+1. [SSH - VScode remote connection error: The process tried to write to a nonexistent pipe](https://stackoverflow.com/questions/60335069/vscode-remote-connection-error-the-process-tried-to-write-to-a-nonexistent-pipe)
 
-(2) [Visual Studio Code - vscode can't ssh connect "The process tried to write to a nonexistent pipe"](https://stackoverflow.com/questions/65193292/vscode-cant-ssh-connect-the-process-tried-to-write-to-a-nonexistent-pipe)
+2. [Visual Studio Code - vscode can't ssh connect "The process tried to write to a nonexistent pipe"](https://stackoverflow.com/questions/65193292/vscode-cant-ssh-connect-the-process-tried-to-write-to-a-nonexistent-pipe)
 
-(3) [Remote Ssh - The process tried to write to a nonexistent pipe](https://github.com/microsoft/vscode-remote-release/issues/1398)
+3. [Remote Ssh - The process tried to write to a nonexistent pipe](https://github.com/microsoft/vscode-remote-release/issues/1398)
 
-(4) [Testing Remote-SSH: No "nonexistent pipe" error popup](https://github.com/microsoft/vscode-remote-release/issues/5770)
+4. [Testing Remote-SSH: No "nonexistent pipe" error popup](https://github.com/microsoft/vscode-remote-release/issues/5770)
 
-(5) [Don't show "The process tried to write to a nonexistent pipe"](https://github.com/microsoft/vscode-remote-release/issues/5723)
+5. [Don't show "The process tried to write to a nonexistent pipe"](https://github.com/microsoft/vscode-remote-release/issues/5723)
 
 ### Prometheus Operator Concept
 
+[Introducing Operators: Putting Operational Knowledge into Software](https://web.archive.org/web/20170129131616/https://coreos.com/blog/introducing-operators.html)
+
+```Text
+Q: How is this different than StatefulSets (previously PetSets)?
+
+A: StatefulSets are designed to enable support in Kubernetes for applications that require the cluster to give them "stateful resources" like static IPs and storage. Applications that need this more stateful deployment model still need Operator automation to alert and act on failure, backup, or reconfigure. So, an Operator for applications needing these deployment properties could use StatefulSets instead of leveraging ReplicaSets or Deployments.
+
+Q: How is this different from configuration management like Puppet or Chef?
+
+A: Containers and Kubernetes are the big differentiation that make Operators possible. With these two technologies deploying new software, coordinating distributed configuration, and checking on multi-host system state is consistent and easy using Kubernetes APIs. Operators glue these primitives together in a useful way for application consumers; it isn't just about configuration but the entire, live, application state.
+
+Q: How is this different than Helm?
+
+A: Helm is a tool for packaging multiple Kubernetes resources into a single package. The concept of packaging up multiple applications together and using Operators that actively manage applications are complementary. For example, traefik is a load balancer that can use etcd as its backend database. You could create a Helm Chart that deploys a traefik Deployment and etcd cluster instance together. The etcd cluster would then be deployed and managed by the etcd Operator.
+```
+
 [Kubernetes operator vs. controller: What's the difference?](https://www.techtarget.com/searchitoperations/tip/Kubernetes-operator-vs-controller-Whats-the-difference)
+
+[OperatorHub.io](https://operatorhub.io/)
+
+[**CAPABILITY LEVEL**](https://operatorframework.io/what/)
+
+- Basic Install
+- Seamless Upgrades
+- Full Lifecycle
+- Deep Insights
+- Auto Pilot
 
 ### Prometheus Operator Install
 
@@ -243,6 +270,29 @@ Please refer to the following for information related to the Tanzu methodology u
 
 [Get mapping API](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-mapping.html)
 
+### fluentd
+
+```Yaml
+
+The specific errors you see in the log are "kubelet upstream connection error." This typically indicates a problem establishing a connection between the kubelet and the upstream Kubernetes API server. The kubelet needs to communicate with the API server to receive instructions and send updates about the containers it manages.
+
+Several factors can cause these errors, including network connectivity issues, misconfiguration of the kubelet, or problems with the Kubernetes API server itself. Here are a few possible reasons for the kubelet upstream connection errors:
+
+Network connectivity: Ensure that the network connectivity between the node running the kubelet and the Kubernetes API server is functioning correctly. Check for any firewall rules, network policies, or other factors that could be blocking the communication.
+
+DNS resolution: The kubelet relies on DNS to resolve the API server's hostname. Ensure that DNS resolution is configured correctly on the node running the kubelet, and the API server's hostname can be resolved.
+
+API server misconfiguration: Check the configuration of the Kubernetes API server to ensure it is set up correctly and is accessible by the kubelet. Verify the API server's address, port, and any relevant authentication or TLS settings.
+
+Kubelet configuration: Review the kubelet's configuration to ensure it is properly configured to connect to the API server. Check the kubelet's command-line flags, configuration file, or any environment variables that affect its connectivity.
+
+API server issues: If none of the above steps resolve the issue, there may be problems with the Kubernetes API server itself. Check the API server logs and investigate if there are any errors or issues reported.
+
+It's recommended to further investigate the specific error messages, review the Kubernetes cluster configuration, and consult the Kubernetes documentation or relevant support resources to troubleshoot and resolve the kubelet upstream connection errors.
+
+
+```
+
 ### Kibana disconnect from Elastic Search
 
 - `F5` or `Ctrl` + `F5` to reconnect
@@ -255,6 +305,90 @@ kiki
 
 ## Day 8
 
+### Terraform module version conflict
+
+```Bash
+ubuntu@ip-10-1-10-72:~/perfStation_IaC$ terraform plan
+╷
+│ Error: Unsupported argument
+│
+│   on main.tf line 37, in module "eks_blueprints":
+│   37:   cluster_name = local.cluster_name
+│
+│ An argument named "cluster_name" is not expected here.
+╵
+╷
+│ Error: Unsupported argument
+│
+│   on main.tf line 38, in module "eks_blueprints":
+│   38:   cluster_version = local.cluster_version
+│
+│ An argument named "cluster_version" is not expected here.
+╵
+╷
+│ Error: Unsupported argument
+│
+│   on main.tf line 40, in module "eks_blueprints":
+│   40:   vpc_id             = module.vpc.vpc_id
+│
+│ An argument named "vpc_id" is not expected here.
+╵
+╷
+│ Error: Unsupported argument
+│
+│   on main.tf line 41, in module "eks_blueprints":
+│   41:   private_subnet_ids = module.vpc.private_subnets
+│
+│ An argument named "private_subnet_ids" is not expected here.
+╵
+╷
+│ Error: Unsupported argument
+│
+│   on main.tf line 43, in module "eks_blueprints":
+│   43:   cluster_enabled_log_types = []
+│
+│ An argument named "cluster_enabled_log_types" is not expected
+│ here.
+╵
+╷
+│ Error: Unsupported argument
+│
+│   on main.tf line 45, in module "eks_blueprints":
+│   45:   managed_node_groups = {
+│
+│ An argument named "managed_node_groups" is not expected here.
+╵
+ubuntu@ip-10-1-10-72:~/perfStation_IaC$
+```
+
+main.tf module "eks_blueprints" "eks_blueprints_kubernetes_addons"
+
+```Bash
+source = "github.com/aws-ia/terraform-aws-eks-blueprints.git?ref=v4.32.0"
+source = "github.com/aws-ia/terraform-aws-eks-blueprints.git?ref=v4.32.0/modules/kubernetes-addons"
+```
+
+[aws-ia/terraform-aws-eks-blueprints v4.32.0 final release before v5.0](https://github.com/aws-ia/terraform-aws-eks-blueprints/releases/tag/v4.32.0)
+
+[Moving forward with v5 of EKS Blueprints #1421
+](https://github.com/aws-ia/terraform-aws-eks-blueprints/issues/1421)
+
+[Amazon EKS Blueprints for Terraform v4 to v5 Migration]
+(https://aws-ia.github.io/terraform-aws-eks-blueprints/main/v4-to-v5/cluster/)
+
+### Specify terraform module version
+
+#### Version argument
+
+When you specify the version using the version argument, Terraform will automatically download the specified version of the module from the Terraform Registry or another supported module source. This is the recommended way to specify the version of a module.
+
+>it’s generally recommended to use the version argument whenever possible, as it provides better versioning and dependency management features.
+
+#### Ref parameter in the source argument
+
+When you specify the version using the ref parameter in the source argument, you’re telling Terraform to download the module from a specific Git reference, such as a branch, tag, or commit. In your example, you’re specifying that Terraform should download the module from the v4.32.0 tag in the github.com/aws-ia/terraform-aws-eks-blueprints repository.
+
+>Using the ref parameter can be useful if you want to use a specific version of a module that is not available in the Terraform Registry or another supported module source.
 ### Apache JMeter HTTP(S) Test Script Recorder
 
 [Apache JMeter HTTP(S) Test Script Recorder](https://jmeter.apache.org/usermanual/jmeter_proxy_step_by_step.html)
