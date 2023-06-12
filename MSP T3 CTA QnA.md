@@ -301,14 +301,12 @@ It's recommended to further investigate the specific error messages, review the 
 
 - disable lightweight prometheus and kiali-server in eMarket app
 
-kiki
-
 ## Day 8
 
 ### Terraform module version conflict
 
 ```Bash
-ubuntu@ip-10-1-10-72:~/perfStation_IaC$ terraform plan
+ubuntu@cta:~/perfStation_IaC$ terraform plan
 ╷
 │ Error: Unsupported argument
 │
@@ -358,7 +356,7 @@ ubuntu@ip-10-1-10-72:~/perfStation_IaC$ terraform plan
 │
 │ An argument named "managed_node_groups" is not expected here.
 ╵
-ubuntu@ip-10-1-10-72:~/perfStation_IaC$
+ubuntu@cta:~/perfStation_IaC$
 ```
 
 main.tf module "eks_blueprints" "eks_blueprints_kubernetes_addons"
@@ -370,11 +368,9 @@ source = "github.com/aws-ia/terraform-aws-eks-blueprints.git?ref=v4.32.0/modules
 
 [aws-ia/terraform-aws-eks-blueprints v4.32.0 final release before v5.0](https://github.com/aws-ia/terraform-aws-eks-blueprints/releases/tag/v4.32.0)
 
-[Moving forward with v5 of EKS Blueprints #1421
-](https://github.com/aws-ia/terraform-aws-eks-blueprints/issues/1421)
+[Moving forward with v5 of EKS Blueprints #1421](https://github.com/aws-ia/terraform-aws-eks-blueprints/issues/1421)
 
-[Amazon EKS Blueprints for Terraform v4 to v5 Migration]
-(https://aws-ia.github.io/terraform-aws-eks-blueprints/main/v4-to-v5/cluster/)
+[Amazon EKS Blueprints for Terraform v4 to v5 Migration](https://aws-ia.github.io/terraform-aws-eks-blueprints/main/v4-to-v5/cluster/)
 
 ### Specify terraform module version
 
