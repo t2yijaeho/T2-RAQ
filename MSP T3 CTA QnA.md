@@ -470,10 +470,56 @@ Default ACL has certain properties that cannot be deleted, which is why you see 
 
 [Resource: aws_default_network_acl](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl)
 
+### AWS Security group multiple rules
+
+[Security group rules](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules.html#:~:text=If%20there%20is%20more%20than%20one%20rule%20for%20a%20specific%20port%2C%20Amazon%20EC2%20applies%20the%20most%20permissive%20rule.%20For%20example%2C%20if%20you%20have%20a%20rule%20that%20allows%20access%20to%20TCP%20port%2022%20(SSH)%20from%20IP%20address%20203.0.113.1%2C%20and%20another%20rule%20that%20allows%20access%20to%20TCP%20port%2022%20from%20everyone%2C%20everyone%20has%20access%20to%20TCP%20port%2022.)
+
+>If there is more than one rule for a specific port, Amazon EC2 ***applies the most permissive rule***. For example, if you have a rule that allows access to TCP port 22 (SSH) from IP address 203.0.113.1, and another rule that allows access to TCP port 22 from everyone, everyone has access to TCP port 22
+
 ## Day 10
+
+### GeoIP
 
 1-2-10. location-api pod
 
 ```Bash
 pymongo.errors.ServerSelectionTimeoutError: No replica set members available for set name "rs0"
 ```
+
+### CrashLoopBackOff
+
+[Kubernetes CrashLoopBackOff Error: What It Is and How to Fix It](https://komodor.com/learn/how-to-fix-crashloopbackoff-kubernetes-error/)
+
+>Error indicates that a pod failed to start, Kubernetes tried to restart it, and it continued to fail repeatedly
+
+By default, a pod’s restart policy is , meaning it should always restart on failure (other options are ). 
+
+>Depending on the restart policy(Always, Never, OnFailure) defined in the pod template, Kubernetes might try to restart the pod multiple times
+>Every time the pod is restarted, Kubernetes waits for a longer and longer time, known as a “backoff delay”. During this process, Kubernetes displays the CrashLoopBackOff error
+
+#### Troubleshoot
+
+1. Check for Back Off Restarting Failed Container
+
+    ```sh
+    kubectl describe pod <name>
+    ```
+
+2. Check Logs From Previous Container Instance
+
+    ```sh
+    kubectl logs --previous --tail 10
+    ```
+
+3. Check Deployment Logs
+
+    ```sh
+    kubectl logs -f deploy/ -n
+    ```
+
+4. Enter into the CrashLoop Container
+
+    ```sh
+    kubectl exec -it <name> -- /bin/bash
+    ```
+
