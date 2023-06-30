@@ -2,9 +2,56 @@
 
 ## Day 1
 
-### VS Code Shortcut
+### VS Code Keyboard shortcuts for Windows
 
-- `Ctrl+Shift+F`
+[Keyboard shortcuts for Windows](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
+
+- `Ctrl+Shift+F` Show Search
+- `Ctrl+Shift+P`, `F1` Show Command Palette
+- `` Ctrl+` `` Show integrated terminal
+
+### Shell Command History
+
+[View history of commands run in terminal](https://askubuntu.com/questions/624848/view-history-of-commands-run-in-terminal)
+
+### Google Chrome conflict
+
+[Malwarebytes conflict with Google Chrome](https://service.malwarebytes.com/hc/en-us/articles/17569022886803-Malwarebytes-conflict-with-Google-Chrome)
+
+[Windows 11 Google Chrome after KB5027231 update](https://learn.microsoft.com/en-us/answers/questions/1312558/issue-about-not-running-windows-11-google-chrome-a)
+
+### Nano Editor
+
+[Overview of nano's shortcuts](https://www.nano-editor.org/dist/latest/cheatsheet.html)
+
+### Route53
+
+[hosted zones](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-working-with.html)
+
+### [Set up the Docker repository](https://docs.docker.com/engine/install/ubuntu/#set-up-the-repository)
+
+```sh
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+The command is used to set up the Docker repository on a Linux system. The repository is a collection of packages that can be installed using the `apt` package manager. The command works by creating a new file called `docker.list` in the `/etc/apt/sources.list.d` directory. This file contains the information that `apt` needs to know in order to find and install Docker packages.
+
+The command is broken down into the following steps:
+
+1. The `echo` command is used to print a string to the console. In this case, the string is a line that defines the Docker repository.
+2. The `|` character is called a pipe. It is used to redirect the output of the `echo` command to the `tee` command.
+3. The `tee` command is used to write the output of a command to a file and to the console. In this case, the `tee` command will write the Docker repository definition to the `docker.list` file and to the console.
+4. The `sudo` command is used to run the command as root. This is necessary because the `tee` command needs to be able to write to the `/etc/apt/sources.list.d` directory.
+5. The `/etc/apt/keyrings/docker.gpg` file contains the GPG key that is used to sign the Docker packages. The `signed-by` option tells `apt` to verify the signature of the packages before they are installed.
+6. The `arch="$(dpkg --print-architecture)"` option tells `apt` to install the correct version of the Docker packages for the architecture of the system.
+7. The `$(. /etc/os-release && echo "$VERSION_CODENAME")` option tells `apt` to install the correct version of the Docker packages for the Ubuntu version that is running on the system.
+8. The `stable` option tells `apt` to install the stable version of the Docker packages.
+9. The `> /dev/null` option tells `tee` to discard any output that is not written to the `docker.list` file.
+
+Once the `docker.list` file has been created, you can use the `apt update` command to update the `apt` package cache. This will make the Docker packages available for installation. You can then install Docker using the `apt install docker-ce` command.
 
 ## Day 2
 
@@ -67,13 +114,17 @@ This will force a clock reset on start up of the distro
 ### My IP
 
 Local public IP query
-  
-  <https://api.ipify.org/>
-  <https://checkip.amazonaws.com/>
 
+  [IPIFY ORG](https://api.ipify.org/)
+  [Cloud Flare](https://icanhazip.com/)
+  [Amazon](https://checkip.amazonaws.com/)
 
 ```Bash
 curl https://api.ipify.org/
+```
+
+```Bash
+curl https://icanhazip.com/
 ```
 
 ```Bash
@@ -82,7 +133,110 @@ curl https://checkip.amazonaws.com/
 
 ### Skaffold trouble shooting
 
+[Architecture and Design](https://skaffold.dev/docs/design/)
+
 Skaffold has a diagnose command that can help you run diagnostics on Skaffold works in your project1. You can also use the debug command to run a pipeline in debug mode1
+
+### DNS
+
+#### DNS Configuration
+
+```yaml
+Google DNS:
+  8.8.8.8
+  8.8.4.4
+Cloudflare DNS:
+  1.1.1.1
+  1.0.0.1
+```
+
+WSL Ubuntu
+
+```sh
+sudo vi /etc/resolv.conf
+```
+
+```text
+nameserver 172.20.144.1:
+```
+
+```text
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+nameserver 1.1.1.1
+nameserver 1.0.0.1
+```
+
+```text
+
+```
+
+```sh
+sudo vi /etc/wsl.conf
+```
+
+```text
+[network]
+generateResolvConf = false
+```
+
+Docker Daemon
+
+```sh
+sudo vi /etc/docker/daemon.json
+```
+
+```Json
+{
+  "dns": [
+    "8.8.8.8",
+    "8.8.4.4",
+    "1.1.1.1",
+    "1.0.0.1",
+  ]
+}
+```
+
+#### DNS Cache flushing
+
+Windows
+
+```powershell
+ipconfig /flushdns
+```
+
+```powershell
+ipconfig /displaydns
+```
+
+Linux
+
+```sh
+sudo systemd-resolve --flush-caches
+```
+
+```sh
+sudo systemd-resolve --statistics
+```
+
+```sh
+resolvectl statistics
+```
+
+#### Solve Fail
+
+```sh
+ERROR: failed to solve: node:16.18-alpine: failed to do request: Head "https://registry-1.docker.io/v2/library/node/manifests/16.18-alpine": dial tcp: lookup registry-1.docker.io on 192.168.49.1:53: server misbehaving
+```
+
+```sh
+minikube stop
+minikube start
+```
+
+```sh
+sudo systemctl restart docker
+```
 
 ## Day 4
 
@@ -127,6 +281,29 @@ Deleting the ingress-nginx-admission webhook configuration will allow you to cre
 However, it is important to note that deleting the ingress-nginx-admission webhook configuration may make your ingress resources more vulnerable to attacks. This is because the Ingress Nginx controller provides a number of security features that are designed to protect your ingress resources from attacks. By deleting the ingress-nginx-admission webhook configuration, you will be disabling these security features.
 
 Therefore, it is important to weigh the risks and benefits before deleting the ingress-nginx-admission webhook configuration. If you are unsure whether or not you should delete the webhook configuration, you should consult with a security expert.
+
+### Docker Image
+
+Docker Container
+
+Stop and remove all running containers:
+
+```sh
+docker stop $(docker ps -aq)
+docker rm $(docker ps -aq)
+```
+
+Removes all containers:
+
+```sh
+docker container rm $(docker container ls -a -q)
+```
+
+Forcefully remove all Docker images:
+
+```sh
+docker rmi --force $(docker images -a -q)
+```
 
 ## Day 5
 
@@ -223,4 +400,6 @@ the kubelet does not try fetching the image. If the image is somehow already pre
 
 [Why And How Of Kubernetes Ingress (And Networking)](https://getenroute.io/blog/ingress-controller-kubernetes-api-gateway-secure-service-jwt-oauth-oidc-network-namespace/)
 
+```sh
 wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+```

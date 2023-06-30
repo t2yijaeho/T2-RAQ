@@ -30,7 +30,6 @@
 
 [Default VPC components](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#default-vpc-components)
 
-
 ### AWS Cloud9 failed to retrieve file
 
 > MacOS Chrome browser
@@ -63,14 +62,13 @@ When downloading module package directories in Terraform, if it is configured to
 
 [AWS Terraform CLI Install](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 
-
 ### Terraform Console
 
 [The terraform console command provides an interactive console for evaluating expressions](https://developer.hashicorp.com/terraform/cli/commands/console)
 
 ## Day 4
 
-### GitOps Console 
+### GitOps Console
 
 - Commit: Push to a Git repository
 - PaC Install: Create Package Directory to a Git repository and Push Package
@@ -227,14 +225,18 @@ More detailed information about Domain-Driven Design is covered in the Cloud App
 
 For related content, please refer to the relevant course materials in Confluence.
 
->Day5 4. Definition of Cloud Native Applications and Design Strategies
->  - Developing Cloud Native Applications_4.pdf
+```text
+Day5 4. Definition of Cloud Native Applications and Design Strategies
+  - Developing Cloud Native Applications_4.pdf
+```
 
 [Modelling Reactive Systems with Event Storming and Domain-Driven Design](https://blog.redelastic.com/corporate-arts-crafts-modelling-reactive-systems-with-event-storming-73c6236f5dd7)
 
->Day6 6. Agile SOA Development, Extreme Programming & DevOps
-> - 6.1. Agile Service Analysis and Design Methodology.pdf
-> - 6.2. Agile Service Composition Design Methodology.pdf
+```text
+Day6 6. Agile SOA Development, Extreme Programming & DevOps
+ - 6.1. Agile Service Analysis and Design Methodology.pdf
+ - 6.2. Agile Service Composition Design Methodology.pdf
+```
 
 Please refer to the following for information related to the Tanzu methodology used in some of our client projects and the tools being used:
 
@@ -385,6 +387,7 @@ When you specify the version using the version argument, Terraform will automati
 When you specify the version using the ref parameter in the source argument, you’re telling Terraform to download the module from a specific Git reference, such as a branch, tag, or commit. In your example, you’re specifying that Terraform should download the module from the v4.32.0 tag in the github.com/aws-ia/terraform-aws-eks-blueprints repository.
 
 >Using the ref parameter can be useful if you want to use a specific version of a module that is not available in the Terraform Registry or another supported module source.
+
 ### Apache JMeter HTTP(S) Test Script Recorder
 
 [Apache JMeter HTTP(S) Test Script Recorder](https://jmeter.apache.org/usermanual/jmeter_proxy_step_by_step.html)
@@ -492,7 +495,7 @@ pymongo.errors.ServerSelectionTimeoutError: No replica set members available for
 
 >Error indicates that a pod failed to start, Kubernetes tried to restart it, and it continued to fail repeatedly
 
-By default, a pod’s restart policy is , meaning it should always restart on failure (other options are ). 
+By default, a pod’s restart policy is , meaning it should always restart on failure (other options are ).
 
 >Depending on the restart policy(Always, Never, OnFailure) defined in the pod template, Kubernetes might try to restart the pod multiple times
 >Every time the pod is restarted, Kubernetes waits for a longer and longer time, known as a “backoff delay”. During this process, Kubernetes displays the CrashLoopBackOff error
@@ -522,4 +525,3 @@ By default, a pod’s restart policy is , meaning it should always restart on fa
     ```sh
     kubectl exec -it <name> -- /bin/bash
     ```
-
