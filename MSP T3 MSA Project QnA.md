@@ -2,6 +2,11 @@
 
 ## Day 1
 
+### VS Code Remote Development
+
+[Developing in WSL](https://code.visualstudio.com/docs/remote/wsl)
+
+[Remote Development using SSH](https://code.visualstudio.com/docs/remote/ssh)
 ### VS Code Keyboard shortcuts for Windows
 
 [Keyboard shortcuts for Windows](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
@@ -359,6 +364,49 @@ include: Includes another configuration file.
 [What is Helm in Kubernetes? Helm and Helm Charts explained | Kubernetes Tutorial 23](https://www.bing.com/videos/search?q=best+video+explain+why+use+helm+chart+youtube&view=detail&mid=6CF58EA85C9A8C7E261B6CF58EA85C9A8C7E261B&FORM=VIRE)
 
 ## Day 8
+
+### Cloudtrail
+
+```sh
+aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=CreateLoadBalancer --region=us-west-2 | grep <<Coud Loadbalancer DNS Name >>
+```
+
+### Service Cluster Lookup Fail
+
+```sh
+Unable to create application: error while validating and normalizing app: error validating the repo: Get "https://08B4564CDA95B0E162C6E40AE4465A16.gr7.us-west-2.eks.amazonaws.com/version?timeout=32s": dial tcp: lookup 08B4564CDA95B0E162C6E40AE4465A16.gr7.us-west-2.eks.amazonaws.com on 172.20.0.10:53: no such host
+```
+
+The error message indicates that you cannot connect to the Kubernetes service cluster. Please check the following:
+
+- Make sure that the service cluster is healthy in the AWS console.
+- Make sure that the cluster settings in ArgoCD match the current service cluster.
+- Make sure that the repository settings are properly connected.
+- Make sure that you can connect to the service cluster from the admin server.
+
+1. Verify DNS resolution: Check the DNS configuration of the machine or cluster where Argo CD is running. Ensure that the DNS settings are correctly configured, and the machine can resolve hostnames to IP addresses. You can test DNS resolution using the nslookup or dig command. For example:
+
+```sh
+nslookup 08B4564CDA95B0E162C6E40AE4465A16.gr7.us-west-2.eks.amazonaws.com
+```
+
+If DNS resolution fails, you may need to investigate your DNS configuration or check if there are any network connectivity issues.
+
+2. Check repository URL: Double-check the repository URL provided in the Argo CD application configuration. Ensure that the URL is correct and accessible. Make sure there are no typos or errors in the URL.
+
+3. Verify network connectivity: Ensure that the machine or cluster where Argo CD is running has proper network connectivity to reach the repository URL. Check if there are any network restrictions, firewalls, or security groups that may be blocking the connection.
+
+4. Check access credentials: If the repository requires authentication, verify that the credentials provided in the Argo CD application configuration are correct and have sufficient privileges to access the repository.
+
+5. Test repository access manually: Try accessing the repository URL manually from the machine or cluster where Argo CD is running. This can help identify if there are any issues with accessing the repository from the environment. You can use tools like curl or wget to test the connectivity.
+
+```sh
+curl -I https://08B4564CDA95B0E162C6E40AE4465A16.gr7.us-west-2.eks.amazonaws.com/version
+```
+
+If the manual test fails, it suggests a problem with the repository's availability or accessibility, and you may need to investigate further.
+
+By following these steps, you should be able to identify the cause of the error and resolve the DNS resolution and repository access issue in Argo CD.
 
 ## Day 9
 
