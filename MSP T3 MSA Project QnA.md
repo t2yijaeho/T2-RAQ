@@ -6,32 +6,84 @@
 
 [Developing in WSL](https://code.visualstudio.com/docs/remote/wsl)
 
-[Remote Development using SSH](https://code.visualstudio.com/docs/remote/ssh)
-### VS Code Keyboard shortcuts for Windows
+>The extension runs commands and other extensions directly in WSL so you can edit files located in WSL or the mounted Windows filesystem (for example /mnt/c) without worrying about pathing issues, binary compatibility, or other cross-OS challenges.
 
-[Keyboard shortcuts for Windows](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
+[Remote Development using SSH](https://code.visualstudio.com/docs/remote/ssh)
+
+>The Visual Studio Code Remote - SSH extension allows you to open a remote folder on any remote machine, virtual machine, or container with a running SSH server and take full advantage of VS Code's feature set. Once connected to a server, you can interact with files and folders anywhere on the remote filesystem.
+
+### [VS Code User Interface](https://code.visualstudio.com/docs/getstarted/userinterface)
+
+- Editor
+- Primary Side Bar
+- Status Bar
+- Activity Bar
+- Panel
+
+### [VS Code Keyboard shortcuts for Windows](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
+
+[Key Bindings for VS Code](https://code.visualstudio.com/docs/getstarted/keybindings)
+
+>VS Code lets you perform most tasks directly from the keyboard
+
+General
+
+- `Ctrl+Shift+P`, `F1` Show Command Palette
+
+Display
 
 - `Ctrl+Shift+F` Show Search
-- `Ctrl+Shift+P`, `F1` Show Command Palette
+- `Ctrl+=`, `Ctrl+-` Zoom in/out
+- `Ctrl+J` Toggle Panel Visibility
+
+Integrated terminal
+
 - `` Ctrl+` `` Show integrated terminal
 
 ### Shell Command History
 
 [View history of commands run in terminal](https://askubuntu.com/questions/624848/view-history-of-commands-run-in-terminal)
 
+```sh
+history
+```
+
 ### Google Chrome conflict
 
 [Malwarebytes conflict with Google Chrome](https://service.malwarebytes.com/hc/en-us/articles/17569022886803-Malwarebytes-conflict-with-Google-Chrome)
 
+> Microsoft’s KB5027231 update installed on Windows 11 caused a conflict between Google Chrome and exploit protection, resulting in browser crashes
+
 [Windows 11 Google Chrome after KB5027231 update](https://learn.microsoft.com/en-us/answers/questions/1312558/issue-about-not-running-windows-11-google-chrome-a)
+
+- Make Google Chrome your default browser
+- Rename the executable Chrome.exe
 
 ### Nano Editor
 
 [Overview of nano's shortcuts](https://www.nano-editor.org/dist/latest/cheatsheet.html)
 
-### Route53
+File handling
+
+- `Ctrl+X` (`Y` `Enter`) Close buffer ( Save ), exit from nano
+
+Deletion
+
+- `Alt+Del`	Delete current line
+
+### Amazon Route53
 
 [hosted zones](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-working-with.html)
+
+>A hosted zone is ***a container for records***, and records contain information about how you want to ***route traffic for a specific domain***, such as samsungsds.com, and its subdomains (cloud.samsungsds.com). A hosted zone and the corresponding domain have the same name
+
+### [AWS Certificate Manager](https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html)
+
+>AWS Certificate Manager (ACM) handles the complexity of creating, storing, and renewing public and private SSL/TLS X.509 certificates and keys that protect your AWS websites and applications. ACM wildcard certificates can protect an unlimited number of subdomains
+
+[What Is An SSL/TLS Certificate?](https://aws.amazon.com/what-is/ssl-certificate/)
+
+>An SSL/TLS certificate is a digital object that allows systems to verify the identity & subsequently establish an encrypted network connection to another system using the Secure Sockets Layer/Transport Layer Security (SSL/TLS) protocol
 
 ### [Set up the Docker repository](https://docs.docker.com/engine/install/ubuntu/#set-up-the-repository)
 
@@ -58,7 +110,43 @@ The command is broken down into the following steps:
 
 Once the `docker.list` file has been created, you can use the `apt update` command to update the `apt` package cache. This will make the Docker packages available for installation. You can then install Docker using the `apt install docker-ce` command.
 
+### [Advanced settings configuration in WSL](https://learn.microsoft.com/en-us/windows/wsl/wsl-config#wslconfig)
+
+#### wsl.conf (per-distribution basis)
+
+`/etc` directory (`/etc/wsl.conf`)
+
+```text
+[boot]
+systemd=true
+```
+
+- ***systemd***: Enable Linux system/service manager
+
+#### .wslconfig (globally across all distributions)
+
+`%UserProfile%` directory (`C:\Users\<UserName>\.wslconfig`)
+
+```text
+[wsl2]
+swap=8GB
+swapfile=D:\\temp\\wsl-swap.vhdx
+kernelCommandLine = cgroup_no_v1=all
+```
+
+- ***swap***: How much swap space to add to the WSL VM
+- ***swapFile***: An absolute Windows path to the swap virtual hard disk
+- ***kernelCommandLine***: Additional kernel command line arguments
+
+  [Control groups v1 v2](https://man7.org/linux/man-pages/man7/cgroups.7.html)
+
+### [WSL Releases](https://github.com/microsoft/WSL/releases)
+
 ## Day 2
+
+### [Online Boutique](https://github.com/GoogleCloudPlatform/microservices-demo)
+
+>A cloud-first microservices application to demonstrate the use of technologies like Kubernetes, Istio consists of an 11-tier microservices works on any Kubernetes cluster. The application is a web-based e-commerce app where users can browse items, add them to the cart, and purchase them
 
 ### WSL Clock Skew
 
@@ -69,7 +157,7 @@ Fatal error: An error occurred (403) when calling the HeadObject operation: Forb
 
 [WSL Clock skew issues megathread](https://github.com/microsoft/WSL/issues/10006)
 
-Sometimes the WSL clock can become skewed, usually after hibernate or sleep
+>Sometimes the WSL clock can become skewed, usually ***after hibernate or sleep***
 
 #### Potential work arounds
 
@@ -96,8 +184,6 @@ sudo hwclock -s
 ```
 
 - Run ntpdate on distro start up
-
-Edit /etc/wsl.conf to have this content:
 
 ```sh
 sudo apt update && sudo apt install ntpdate -y
@@ -423,6 +509,16 @@ four different traffic-graph renderings
 - The ***versioned app*** graph aggregates by app, but breaks out the different versions providing traffic breakdowns that are version-specific
 
 - The ***service graph*** provides a high-level view, which aggregates all traffic for defined services
+
+### Service Mesh Dashboard
+
+- Meshery
+- Kiali
+- Service Graph
+- Istio Dashboard
+- Linkerd Dashboard
+- Consul Kiali
+- OpenCensus Dashboard
 
 ### Kubernetes Image Pull Policy
 
