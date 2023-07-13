@@ -206,9 +206,10 @@ This will force a clock reset on start up of the distro
 
 Local public IP query
 
-  [IPIFY ORG](https://api.ipify.org/)
-  [Cloud Flare](https://icanhazip.com/)
-  [Amazon](https://checkip.amazonaws.com/)
+- [IPIFY ORG](https://api.ipify.org/)
+- [Cloud Flare](https://icanhazip.com/)
+- [Amazon](https://checkip.amazonaws.com/)
+- [quad0](https://ifconfig.me)
 
 ```Bash
 curl https://api.ipify.org/
@@ -220,6 +221,10 @@ curl https://icanhazip.com/
 
 ```Bash
 curl https://checkip.amazonaws.com/
+```
+
+```Bash
+curl https://ifconfig.me/
 ```
 
 ### Skaffold trouble shooting

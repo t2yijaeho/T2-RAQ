@@ -93,6 +93,13 @@ This error message can occur for several reasons when using VS Code's Remote-SSH
 
 5. [Don't show "The process tried to write to a nonexistent pipe"](https://github.com/microsoft/vscode-remote-release/issues/5723)
 
+
+### Troubleshoot instances
+
+[Working with CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/get-and-view-cloudtrail-log-files.html)
+
+[Troubleshoot instances with failed status checks](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)
+
 ### Prometheus Operator Concept
 
 [Introducing Operators: Putting Operational Knowledge into Software](https://web.archive.org/web/20170129131616/https://coreos.com/blog/introducing-operators.html)
