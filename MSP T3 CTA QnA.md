@@ -312,6 +312,22 @@ It's recommended to further investigate the specific error messages, review the 
 
 ## Day 8
 
+### Scouter
+
+Windows > Reset Perspective
+
+### APM
+
+[Tracing CNCF Cloud Native Interactive Landscape](https://landscape.cncf.io/card-mode?category=tracing)
+
+- [Jaeger: A distributed tracing system that helps you to track requests as they travel through your distributed system](https://www.jaegertracing.io/)
+- [Zipkin: Open source distributed tracing system that is similar to Jaeger](https://zipkin.io/)
+- [Elastic APM: An open source application performance monitoring (APM) system that is built on top of Elasticsearch](https://www.elastic.co/observability/application-performance-monitoring)
+- [SigNoz](https://signoz.io/)
+- [Glowroot: A lightweight and easy-to-use APM system that is designed for Java applications](https://glowroot.org/)
+- [Scouter: A Java-specific APM system that is designed for high-performance applications](https://github.com/scouter-project/scouter)
+
+
 ### Terraform module version conflict
 
 ```Bash
@@ -422,6 +438,24 @@ aws service-quotas request-service-quota-increase \
     --desired-value 128
 ```
 
+### Saturation point vs Critical point
+
+Define the limits of a system's performance
+
+#### Critical point
+
+- The point at which the system will fail
+- To optimize the system's performance
+- System crashes
+
+#### Saturation point
+
+- The point at which the system can no longer handle any additional load
+- Use	To ensure that the system is not overloaded
+- System slows down
+
+>The saturation point for the web server might be the point at which the server can no longer handle more than 1000 concurrent requests per second. The critical point for the web server might be the point at which the server will crash if it receives more than 1500 concurrent requests per second
+
 ## Day 9
 
 ### Persistent Volume on Different Zone
@@ -432,7 +466,7 @@ Pod:
 REASON:
   FailedScheduling
 MESSAGE:
-  0/3 nodes are available: 1 Insufficient cpu. preemption: 0/3 nodes are available: 3 No preemption victims found for incoming pod.
+  0/3 nodes are available: 1 Insufficient cpu. preemption: 0/3 nodes are available: 3 No preemption victims found for incoming pod
 ```
 
 ```Yaml
@@ -485,6 +519,25 @@ Default ACL has certain properties that cannot be deleted, which is why you see 
 [Security group rules](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules.html#:~:text=If%20there%20is%20more%20than%20one%20rule%20for%20a%20specific%20port%2C%20Amazon%20EC2%20applies%20the%20most%20permissive%20rule.%20For%20example%2C%20if%20you%20have%20a%20rule%20that%20allows%20access%20to%20TCP%20port%2022%20(SSH)%20from%20IP%20address%20203.0.113.1%2C%20and%20another%20rule%20that%20allows%20access%20to%20TCP%20port%2022%20from%20everyone%2C%20everyone%20has%20access%20to%20TCP%20port%2022.)
 
 >If there is more than one rule for a specific port, Amazon EC2 ***applies the most permissive rule***. For example, if you have a rule that allows access to TCP port 22 (SSH) from IP address 203.0.113.1, and another rule that allows access to TCP port 22 from everyone, everyone has access to TCP port 22
+
+### Pod Pending
+
+Check the current state of the Pod and recent events with `describe` command
+
+```sh
+kubectl get pods --field-selector=status.phase=Pending
+```
+
+```sh
+kubectl describe pod <PENDING POD NAME>
+```
+
+[How to debug Kubernetes Pending pods and scheduling failures](https://www.datadoghq.com/blog/debug-kubernetes-pending-pods/)
+
+[Troubleshooting Kubernetes Pods: Stuck in a "Pending" State](https://www.blinkops.com/blog/troubleshooting-kubernetes-pods-stuck-in-pending-state)
+
+[Debug Pods](https://kubernetes.io/docs/tasks/debug/debug-application/debug-pods/)
+
 
 ## Day 10
 
