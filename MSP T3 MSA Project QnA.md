@@ -334,6 +334,34 @@ minikube start
 sudo systemctl restart docker
 ```
 
+### Skaffold config minikube env
+
+```
+invalid skaffold config: getting minikube env: running [/usr/local/bin/minikube docker-env --shell none -p minikube --user=skaffold]
+```
+
+```sh
+stdout: "DOCKER_TLS_VERIFY=1\nDOCKER_HOST=tcp://127.0.0.1:32776\nDOCKER_CERT_PATH=/home/ubuntu/.minikube/certs\nMINIKUBE_ACTIVE_DOCKERD=minikube\nSSH_AUTH_SOCK=\nSSH_AGENT_PID=\n"
+stderr: "Host added: /home/ubuntu/.ssh/known_hosts ([127.0.0.1]:32777)\nOpenFile: open /home/ubuntu/.ssh/known_hosts: no such file or directory\n"
+cause: exit status 1
+```
+
+- Skaffold was unable to get the environment variables for Minikube
+- The reason for this is that the `/home/ubuntu/.ssh/known_hosts` file does not exist
+- This file is used to store the SSH host keys for known hosts, and it is required by Minikube.
+
+To fix this error, you need to create the /home/ubuntu/.ssh/known_hosts file. You can do this by running the following command:
+
+```sh
+ssh-keyscan 127.0.0.1 >> /home/ubuntu/.ssh/known_hosts
+```
+
+This command will scan the loopback address (127.0.0.1) for SSH host keys, and it will add them to the /home/ubuntu/.ssh/known_hosts file. Once you have created this file, you should be able to run skaffold dev --port-forward without any errors.
+
+[Skaffold documentation on port forwarding](https://skaffold.dev/docs/port-forwarding/)
+[Minikube documentation on the docker-env command](https://minikube.sigs.k8s.io/docs/commands/docker-env/)
+[SSH documentation on the ssh-keyscan command](https://linux.die.net/man/1/ssh-keyscan)
+
 ## Day 4
 
 ### npm package install error
@@ -400,6 +428,18 @@ Forcefully remove all Docker images:
 ```sh
 docker rmi --force $(docker images -a -q)
 ```
+
+### Prune Docker Objects
+
+[Prune unused Docker objects](https://docs.docker.com/config/pruning/)
+
+[Show untagged images (dangling)](https://docs.docker.com/engine/reference/commandline/images/#show-untagged-images-dangling)
+
+### Docker Cache
+
+[Docker Cache – How to Do a Clean Image Rebuild and Clear Docker's Cache](https://www.freecodecamp.org/news/docker-cache-tutorial/)
+
+[Optimizing builds with cache management](https://docs.docker.com/build/cache/)
 
 ## Day 5
 
