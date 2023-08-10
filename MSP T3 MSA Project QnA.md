@@ -441,6 +441,8 @@ docker rmi --force $(docker images -a -q)
 
 [Optimizing builds with cache management](https://docs.docker.com/build/cache/)
 
+[How to get docker-compose to use the latest image from repository](https://stackoverflow.com/questions/37685581/how-to-get-docker-compose-to-use-the-latest-image-from-repository)
+
 ## Day 5
 
 ### Nginx Reverse Proxy configuration
