@@ -486,7 +486,318 @@ include: Includes another configuration file.
 
 ## Day 6
 
-### Kaniko
+### [Kaniko - Build Images In Kubernetes](https://github.com/GoogleContainerTools/kaniko)
+
+### Github Jenkins webhooks
+
+`The HyperText Transfer Protocol (HTTP) 302 Found redirect status response code`
+
+- indicates that the resource requested has been temporarily moved to the URL given by the Location header
+- A browser redirects to this page but search engines don't update their links to the resource
+- Without Trailing Slash webhooks can get redirect error
+
+[Triggering builds with webhooks behind a secure firewall](https://www.jenkins.io/blog/2019/01/07/webhook-firewalls/)
+
+[Github Webhook With Jenkins return 302 Found](https://stackoverflow.com/questions/49848884/github-webhook-with-jenkins-return-302-found)
+
+### AWS EKS Nodes
+
+```sh
+kubectl describe nodes
+```
+
+```sh
+ubuntu@ip-10-0-10-32:~$ kubectl describe nodes
+Name:               ip-10-0-10-242.ec2.internal
+Roles:              <none>
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/instance-type=t3.medium
+                    beta.kubernetes.io/os=linux
+                    eks.amazonaws.com/capacityType=ON_DEMAND
+                    eks.amazonaws.com/nodegroup=eshop-mgmt-eks-node
+                    eks.amazonaws.com/nodegroup-image=ami-02f5ecb082b74cd86
+                    failure-domain.beta.kubernetes.io/region=us-east-1
+                    failure-domain.beta.kubernetes.io/zone=us-east-1a
+                    k8s.io/cloud-provider-aws=c00b8417cd66d053d0fc57caa7fb9d3e
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=ip-10-0-10-242.ec2.internal
+                    kubernetes.io/os=linux
+                    node.kubernetes.io/instance-type=t3.medium
+                    topology.ebs.csi.aws.com/zone=us-east-1a
+                    topology.kubernetes.io/region=us-east-1
+                    topology.kubernetes.io/zone=us-east-1a
+Annotations:        alpha.kubernetes.io/provided-node-ip: 10.0.10.242
+                    csi.volume.kubernetes.io/nodeid: {"ebs.csi.aws.com":"i-018db00f31a8bc4a7"}
+                    node.alpha.kubernetes.io/ttl: 0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Wed, 16 Aug 2023 01:40:17 +0000
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  ip-10-0-10-242.ec2.internal
+  AcquireTime:     <unset>
+  RenewTime:       Wed, 16 Aug 2023 06:12:09 +0000
+Conditions:
+  Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----             ------  -----------------                 ------------------                ------                       -------
+  MemoryPressure   False   Wed, 16 Aug 2023 06:07:54 +0000   Wed, 16 Aug 2023 01:40:16 +0000   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure     False   Wed, 16 Aug 2023 06:07:54 +0000   Wed, 16 Aug 2023 01:40:16 +0000   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure      False   Wed, 16 Aug 2023 06:07:54 +0000   Wed, 16 Aug 2023 01:40:16 +0000   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready            True    Wed, 16 Aug 2023 06:07:54 +0000   Wed, 16 Aug 2023 01:40:37 +0000   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:   10.0.10.242
+  Hostname:     ip-10-0-10-242.ec2.internal
+  InternalDNS:  ip-10-0-10-242.ec2.internal
+Capacity:
+  attachable-volumes-aws-ebs:  25
+  cpu:                         2
+  ephemeral-storage:           20959212Ki
+  hugepages-1Gi:               0
+  hugepages-2Mi:               0
+  memory:                      3943376Ki
+  pods:                        17
+Allocatable:
+  attachable-volumes-aws-ebs:  25
+  cpu:                         1930m
+  ephemeral-storage:           18242267924
+  hugepages-1Gi:               0
+  hugepages-2Mi:               0
+  memory:                      3388368Ki
+  pods:                        17
+System Info:
+  Machine ID:                 ec26f70a1a1c41d10e494fd44f7d32a2
+  System UUID:                ec26f70a-1a1c-41d1-0e49-4fd44f7d32a2
+  Boot ID:                    5dad7f0e-164e-4957-8393-e6fb3b835096
+  Kernel Version:             5.10.173-154.642.amzn2.x86_64
+  OS Image:                   Amazon Linux 2
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  containerd://1.6.19
+  Kubelet Version:            v1.24.11-eks-a59e1f0
+  Kube-Proxy Version:         v1.24.11-eks-a59e1f0
+ProviderID:                   aws:///us-east-1a/i-018db00f31a8bc4a7
+Non-terminated Pods:          (12 in total)
+  Namespace                   Name                                                 CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                                                 ------------  ----------  ---------------  -------------  ---
+  argocd                      argocd-application-controller-0                      0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  argocd                      argocd-applicationset-controller-6958f7b744-tvtp2    0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  argocd                      argocd-notifications-controller-5f85647f6c-x768k     0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  jenkins                     jenkins-0                                            50m (2%)      2 (103%)    256Mi (7%)       4Gi (123%)     39d
+  kube-system                 aws-node-xjzhc                                       25m (1%)      0 (0%)      0 (0%)           0 (0%)         4h32m
+  kube-system                 ebs-csi-node-czfzr                                   30m (1%)      300m (15%)  120Mi (3%)       768Mi (23%)    4h32m
+  kube-system                 kube-proxy-x5nq2                                     100m (5%)     0 (0%)      0 (0%)           0 (0%)         4h32m
+  meshery                     meshery-consul-8484fbcc96-8rdr5                      0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  meshery                     meshery-kuma-785765997-n9sb4                         0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  meshery                     meshery-linkerd-cc65f9d78-k5wpm                      0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  meshery                     meshery-meshsync-6f969458f6-8vtk8                    0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  meshery                     meshery-osm-6fbc9769cd-pmvpv                         0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource                    Requests     Limits
+  --------                    --------     ------
+  cpu                         205m (10%)   2300m (119%)
+  memory                      376Mi (11%)  4864Mi (146%)
+  ephemeral-storage           0 (0%)       0 (0%)
+  hugepages-1Gi               0 (0%)       0 (0%)
+  hugepages-2Mi               0 (0%)       0 (0%)
+  attachable-volumes-aws-ebs  0            0
+Events:                       <none>
+
+
+Name:               ip-10-0-11-193.ec2.internal
+Roles:              <none>
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/instance-type=t3.medium
+                    beta.kubernetes.io/os=linux
+                    eks.amazonaws.com/capacityType=ON_DEMAND
+                    eks.amazonaws.com/nodegroup=eshop-mgmt-eks-node
+                    eks.amazonaws.com/nodegroup-image=ami-02f5ecb082b74cd86
+                    failure-domain.beta.kubernetes.io/region=us-east-1
+                    failure-domain.beta.kubernetes.io/zone=us-east-1b
+                    k8s.io/cloud-provider-aws=c00b8417cd66d053d0fc57caa7fb9d3e
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=ip-10-0-11-193.ec2.internal
+                    kubernetes.io/os=linux
+                    node.kubernetes.io/instance-type=t3.medium
+                    topology.ebs.csi.aws.com/zone=us-east-1b
+                    topology.kubernetes.io/region=us-east-1
+                    topology.kubernetes.io/zone=us-east-1b
+Annotations:        alpha.kubernetes.io/provided-node-ip: 10.0.11.193
+                    csi.volume.kubernetes.io/nodeid: {"ebs.csi.aws.com":"i-077b8f0ef8bad3b7d"}
+                    node.alpha.kubernetes.io/ttl: 0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Wed, 16 Aug 2023 01:40:16 +0000
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  ip-10-0-11-193.ec2.internal
+  AcquireTime:     <unset>
+  RenewTime:       Wed, 16 Aug 2023 06:12:11 +0000
+Conditions:
+  Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----             ------  -----------------                 ------------------                ------                       -------
+  MemoryPressure   False   Wed, 16 Aug 2023 06:07:24 +0000   Wed, 16 Aug 2023 01:40:15 +0000   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure     False   Wed, 16 Aug 2023 06:07:24 +0000   Wed, 16 Aug 2023 01:40:15 +0000   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure      False   Wed, 16 Aug 2023 06:07:24 +0000   Wed, 16 Aug 2023 01:40:15 +0000   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready            True    Wed, 16 Aug 2023 06:07:24 +0000   Wed, 16 Aug 2023 01:40:36 +0000   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:   10.0.11.193
+  Hostname:     ip-10-0-11-193.ec2.internal
+  InternalDNS:  ip-10-0-11-193.ec2.internal
+Capacity:
+  attachable-volumes-aws-ebs:  25
+  cpu:                         2
+  ephemeral-storage:           20959212Ki
+  hugepages-1Gi:               0
+  hugepages-2Mi:               0
+  memory:                      3943376Ki
+  pods:                        17
+Allocatable:
+  attachable-volumes-aws-ebs:  25
+  cpu:                         1930m
+  ephemeral-storage:           18242267924
+  hugepages-1Gi:               0
+  hugepages-2Mi:               0
+  memory:                      3388368Ki
+  pods:                        17
+System Info:
+  Machine ID:                 ec2b6daf532a7a13433124fe6d7f84ab
+  System UUID:                ec2b6daf-532a-7a13-4331-24fe6d7f84ab
+  Boot ID:                    c50838d5-96be-4025-a7bc-8b3baa908bfb
+  Kernel Version:             5.10.173-154.642.amzn2.x86_64
+  OS Image:                   Amazon Linux 2
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  containerd://1.6.19
+  Kubelet Version:            v1.24.11-eks-a59e1f0
+  Kube-Proxy Version:         v1.24.11-eks-a59e1f0
+ProviderID:                   aws:///us-east-1b/i-077b8f0ef8bad3b7d
+Non-terminated Pods:          (17 in total)
+  Namespace                   Name                                     CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                                     ------------  ----------  ---------------  -------------  ---
+  argocd                      argocd-dex-server-5b4dd7696f-2fq2r       0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  argocd                      argocd-repo-server-5fbdd6655b-ch7rm      0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  istio-system                istio-ingressgateway-5d55688987-qtj9n    100m (5%)     2 (103%)    128Mi (3%)       1Gi (30%)      39d
+  kube-system                 aws-node-fqv7h                           25m (1%)      0 (0%)      0 (0%)           0 (0%)         4h32m
+  kube-system                 coredns-79989457d9-hgpnz                 100m (5%)     0 (0%)      70Mi (2%)        170Mi (5%)     39d
+  kube-system                 coredns-79989457d9-lmm6r                 100m (5%)     0 (0%)      70Mi (2%)        170Mi (5%)     39d
+  kube-system                 ebs-csi-controller-6c4844c8c9-47bwx      60m (3%)      600m (31%)  240Mi (7%)       1536Mi (46%)   39d
+  kube-system                 ebs-csi-controller-6c4844c8c9-ptdrr      60m (3%)      600m (31%)  240Mi (7%)       1536Mi (46%)   39d
+  kube-system                 ebs-csi-node-2chkk                       30m (1%)      300m (15%)  120Mi (3%)       768Mi (23%)    4h32m
+  kube-system                 kube-proxy-qcpn4                         100m (5%)     0 (0%)      0 (0%)           0 (0%)         4h32m
+  meshery                     meshery-app-mesh-67c78f557d-dwt2p        0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  meshery                     meshery-broker-0                         0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  meshery                     meshery-cilium-7757c94c4d-sj4c2          0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  meshery                     meshery-db8dc964-gsk72                   0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  meshery                     meshery-istio-65f67fb978-ndv6r           0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  meshery                     meshery-nsm-7788546ff6-77d2z             0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  meshery                     meshery-operator-545f56d5b-xb9xw         0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource                    Requests     Limits
+  --------                    --------     ------
+  cpu                         575m (29%)   3500m (181%)
+  memory                      868Mi (26%)  5204Mi (157%)
+  ephemeral-storage           0 (0%)       0 (0%)
+  hugepages-1Gi               0 (0%)       0 (0%)
+  hugepages-2Mi               0 (0%)       0 (0%)
+  attachable-volumes-aws-ebs  0            0
+Events:                       <none>
+
+
+Name:               ip-10-0-11-9.ec2.internal
+Roles:              <none>
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/instance-type=t3.medium
+                    beta.kubernetes.io/os=linux
+                    eks.amazonaws.com/capacityType=ON_DEMAND
+                    eks.amazonaws.com/nodegroup=eshop-mgmt-eks-node
+                    eks.amazonaws.com/nodegroup-image=ami-02f5ecb082b74cd86
+                    failure-domain.beta.kubernetes.io/region=us-east-1
+                    failure-domain.beta.kubernetes.io/zone=us-east-1b
+                    k8s.io/cloud-provider-aws=c00b8417cd66d053d0fc57caa7fb9d3e
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=ip-10-0-11-9.ec2.internal
+                    kubernetes.io/os=linux
+                    node.kubernetes.io/instance-type=t3.medium
+                    topology.ebs.csi.aws.com/zone=us-east-1b
+                    topology.kubernetes.io/region=us-east-1
+                    topology.kubernetes.io/zone=us-east-1b
+Annotations:        alpha.kubernetes.io/provided-node-ip: 10.0.11.9
+                    csi.volume.kubernetes.io/nodeid: {"ebs.csi.aws.com":"i-0ab37466b41a732f1"}
+                    node.alpha.kubernetes.io/ttl: 0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Wed, 16 Aug 2023 01:40:22 +0000
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  ip-10-0-11-9.ec2.internal
+  AcquireTime:     <unset>
+  RenewTime:       Wed, 16 Aug 2023 06:12:12 +0000
+Conditions:
+  Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----             ------  -----------------                 ------------------                ------                       -------
+  MemoryPressure   False   Wed, 16 Aug 2023 06:12:13 +0000   Wed, 16 Aug 2023 01:40:20 +0000   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure     False   Wed, 16 Aug 2023 06:12:13 +0000   Wed, 16 Aug 2023 01:40:20 +0000   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure      False   Wed, 16 Aug 2023 06:12:13 +0000   Wed, 16 Aug 2023 01:40:20 +0000   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready            True    Wed, 16 Aug 2023 06:12:13 +0000   Wed, 16 Aug 2023 01:40:44 +0000   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:   10.0.11.9
+  Hostname:     ip-10-0-11-9.ec2.internal
+  InternalDNS:  ip-10-0-11-9.ec2.internal
+Capacity:
+  attachable-volumes-aws-ebs:  25
+  cpu:                         2
+  ephemeral-storage:           20959212Ki
+  hugepages-1Gi:               0
+  hugepages-2Mi:               0
+  memory:                      3943376Ki
+  pods:                        17
+Allocatable:
+  attachable-volumes-aws-ebs:  25
+  cpu:                         1930m
+  ephemeral-storage:           18242267924
+  hugepages-1Gi:               0
+  hugepages-2Mi:               0
+  memory:                      3388368Ki
+  pods:                        17
+System Info:
+  Machine ID:                 ec293b61b02d05be09458c058fdd8aa7
+  System UUID:                ec293b61-b02d-05be-0945-8c058fdd8aa7
+  Boot ID:                    411260b8-a836-4336-b980-a8e01c187c59
+  Kernel Version:             5.10.173-154.642.amzn2.x86_64
+  OS Image:                   Amazon Linux 2
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  containerd://1.6.19
+  Kubelet Version:            v1.24.11-eks-a59e1f0
+  Kube-Proxy Version:         v1.24.11-eks-a59e1f0
+ProviderID:                   aws:///us-east-1b/i-0ab37466b41a732f1
+Non-terminated Pods:          (8 in total)
+  Namespace                   Name                                    CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                                    ------------  ----------  ---------------  -------------  ---
+  argocd                      argocd-redis-69d5786dcd-t49qn           0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  argocd                      argocd-server-d489bcdff-2fljr           0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  istio-system                istiod-7b47bb8679-q9nq9                 500m (25%)    0 (0%)      2Gi (61%)        0 (0%)         39d
+  kube-system                 aws-node-jvl7v                          25m (1%)      0 (0%)      0 (0%)           0 (0%)         4h31m
+  kube-system                 ebs-csi-node-h4gz9                      30m (1%)      300m (15%)  120Mi (3%)       768Mi (23%)    4h31m
+  kube-system                 kube-proxy-bnjvw                        100m (5%)     0 (0%)      0 (0%)           0 (0%)         4h31m
+  meshery                     meshery-nginx-sm-5c5569dbf4-nkdvj       0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+  meshery                     meshery-traefik-mesh-c5548d4f6-nbk7p    0 (0%)        0 (0%)      0 (0%)           0 (0%)         39d
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource                    Requests      Limits
+  --------                    --------      ------
+  cpu                         655m (33%)    300m (15%)
+  memory                      2168Mi (65%)  768Mi (23%)
+  ephemeral-storage           0 (0%)        0 (0%)
+  hugepages-1Gi               0 (0%)        0 (0%)
+  hugepages-2Mi               0 (0%)        0 (0%)
+  attachable-volumes-aws-ebs  0             0
+Events:                       <none>
+```
+
+### [Using Git source control in VS Code](https://code.visualstudio.com/docs/sourcecontrol/overview)
 
 ## Day 7
 
@@ -500,8 +811,24 @@ include: Includes another configuration file.
 
 ### Cloudtrail
 
+[What Is AWS CloudTrail?](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)
+
+WS CloudTrail is an AWS service that helps you enable operational and risk auditing, governance, and compliance of your AWS account. Actions taken by a user, role, or an AWS service are recorded as events in CloudTrail. Events include actions taken in the AWS Management Console, AWS Command Line Interface, and AWS SDKs and APIs.
+
 ```sh
 aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=CreateLoadBalancer --region=us-west-2 | grep <<Coud Loadbalancer DNS Name >>
+```
+
+```sh
+aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=CreateLoadBalancer --region=us-west-2 --output json | jq '.Events[].CloudTrailEvent' | jq fromjson
+```
+
+```sh
+aws cloudtrail --region us-east-1  lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=ConsoleLogin --query Events[].EventTime --output yaml
+```
+
+```sh
+aws cloudtrail lookup-events --query 'Events[].EventName' --output yaml --max-items 999 | sort | uniq
 ```
 
 ### Service Cluster Lookup Fail
