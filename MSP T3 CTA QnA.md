@@ -102,7 +102,7 @@ This error message can occur for several reasons when using VS Code's Remote-SSH
 
 ### Prometheus Operator Concept
 
-[Introducing Operators: Putting Operational Knowledge into Software](https://web.archive.org/web/20170129131616/https://coreos.com/blog/introducing-operators.html)
+[Introducing Operators: Putting Operational Knowledge into Software](https://cloud.redhat.com/blog/introducing-operators-putting-operational-knowledge-into-software)
 
 ```Text
 Q: How is this different than StatefulSets (previously PetSets)?

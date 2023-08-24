@@ -820,6 +820,85 @@ aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,Attribut
 ```
 
 ```sh
+aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=CreateLoadBalancer --region=us-west-2 | grep ae663f3f8eff243a69e06266cb319154-1234567890.us-west-2.elb.amazonaws.com
+```
+
+```json
+{
+  "CloudTrailEvent": {
+    "eventVersion": "1.08",
+    "userIdentity": {
+      "type": "AssumedRole",
+      "principalId": "AROAXAY7VTE7BDHPKQYQB:1692148309803252560",
+      "arn": "arn:aws:sts::----------:assumed-role/eshop-service-eks-cluster-role/1692148309803252560",
+      "accountId": "------------",
+      "accessKeyId": "ASIAXAY7VTE7PZPVICON",
+      "sessionContext": {
+        "sessionIssuer": {
+          "type": "Role",
+          "principalId": "AROAXAY7VTE7BDHPKQYQB",
+          "arn": "arn:aws:iam::-----------:role/eshop-service-eks-cluster-role",
+          "accountId": "-------------",
+          "userName": "eshop-service-eks-cluster-role"
+        },
+        "webIdFederationData": {},
+        "attributes": {
+          "creationDate": "2023-08-17T02:24:04Z",
+          "mfaAuthenticated": "false"
+        }
+      },
+      "invokedBy": "eks.amazonaws.com"
+    },
+    "eventTime": "2023-08-17T02:24:05Z",
+    "eventSource": "elasticloadbalancing.amazonaws.com",
+    "eventName": "CreateLoadBalancer",
+    "awsRegion": "us-west-2",
+    "sourceIPAddress": "eks.amazonaws.com",
+    "userAgent": "eks.amazonaws.com",
+    "requestParameters": {
+      "subnets": [
+        "subnet-014562146fbd5d9f8",
+        "subnet-0aa7b262baef75b27"
+      ],
+      "securityGroups": [
+        "sg-0d5df846480d7e2cb"
+      ],
+      "loadBalancerName": "ae663f3f8eff243a69e06266cb319154",
+      "tags": [
+        {
+          "key": "kubernetes.io/service-name",
+          "value": "eshop/eshop-prometheus-server"
+        },
+        {
+          "key": "kubernetes.io/cluster/eshop-service-eks-cluster",
+          "value": "owned"
+        }
+      ],
+      "listeners": [
+        {
+          "protocol": "tcp",
+          "loadBalancerPort": 80,
+          "instanceProtocol": "tcp",
+          "instancePort": 32030
+        }
+      ]
+    },
+    "responseElements": {
+      "dNSName": "ae663f3f8eff243a69e06266cb319154-1234567890.us-west-2.elb.amazonaws.com"
+    },
+    "requestID": "0daee6a7-a349-4228-9ac7-8d9c598a2dce",
+    "eventID": "09c28c01-f12f-4a6a-9551-7f30270dffc8",
+    "readOnly": false,
+    "eventType": "AwsApiCall",
+    "apiVersion": "2012-06-01",
+    "managementEvent": true,
+    "recipientAccountId": "----------------",
+    "eventCategory": "Management"
+  }
+}
+```
+
+```sh
 aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=CreateLoadBalancer --region=us-west-2 --output json | jq '.Events[].CloudTrailEvent' | jq fromjson
 ```
 
@@ -909,6 +988,16 @@ every time the kubelet launches a container, the kubelet queries the container i
 - ***Never***
 
 the kubelet does not try fetching the image. If the image is somehow already present locally, the kubelet attempts to start the container; otherwise, startup fails. See pre-pulled images for more details.
+
+### npm install fsevents
+
+[npm install error (code EBADPLATFORM)](https://stackoverflow.com/questions/49475492/npm-install-error-code-ebadplatform)
+
+[package-lock.json: The Complete Guide](https://medium.com/helpshift-engineering/package-lock-json-the-complete-guide-2ae40175ebdd)
+
+`package.json` is a versioning file that primarily contains the list of dependencies (libraries) your node.js project needs to run
+
+`package-lock.json` is a lockfile that contains information about the dependencies/packages with their ***exact version numbers*** that were installed for a node.js project
 
 ## Day 10
 
