@@ -42,7 +42,7 @@ Failed to write to 'c9gdbshim.js'. Failed to retrieve resource from https://vfs-
 
 [Advanced Bash-Scripting Guide: Here Documents](https://tldp.org/LDP/abs/html/here-docs.html)
 
-### Cloud Init
+### [Cloud Init](https://cloud-init.io/)
 
 #### User Data log
 
@@ -65,6 +65,12 @@ When downloading module package directories in Terraform, if it is configured to
 ### Terraform Console
 
 [The terraform console command provides an interactive console for evaluating expressions](https://developer.hashicorp.com/terraform/cli/commands/console)
+
+### AWS Cloud9 Code Support
+
+[Setting up CodeWhisperer with AWS Cloud9](https://docs.aws.amazon.com/codewhisperer/latest/userguide/cloud9-setup.html)
+
+[Language support in the AWS Cloud9 Integrated Development Environment (IDE)](https://docs.aws.amazon.com/cloud9/latest/user-guide/language-support.html)
 
 ## Day 4
 
@@ -223,6 +229,10 @@ Roll back a release to a previous revision
 [Use AWS Secrets Manager secrets in Amazon Elastic Kubernetes Service](https://docs.aws.amazon.com/secretsmanager/latest/userguide/integrating_csi_driver.html)
 
 [Managing secrets deployment in Kubernetes using Sealed Secrets](https://aws.amazon.com/blogs/opensource/managing-secrets-deployment-in-kubernetes-using-sealed-secrets/)
+
+### Divergent branches
+
+[How to Merge when you get error "Hint: You have divergent branches and need to specify how to reconcile them."](https://stackoverflow.com/questions/71768999/how-to-merge-when-you-get-error-hint-you-have-divergent-branches-and-need-to-s)
 
 ## Day 6
 
