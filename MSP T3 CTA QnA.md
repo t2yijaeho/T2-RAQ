@@ -99,7 +99,6 @@ This error message can occur for several reasons when using VS Code's Remote-SSH
 
 5. [Don't show "The process tried to write to a nonexistent pipe"](https://github.com/microsoft/vscode-remote-release/issues/5723)
 
-
 ### Troubleshoot instances
 
 [Working with CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/get-and-view-cloudtrail-log-files.html)
@@ -162,6 +161,39 @@ To configure Prometheus Operator, the following three types are suggested:
 
 - provides a similar feature set to kube-prometheus
 - maintained by the Prometheus community
+
+### [PowerShell Select-String](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-string?view=powershell-7.3)
+
+>Finds text in strings and files
+
+```powershell
+select-string -path ".\j-13878.log" -pattern "eipalloc"
+```
+
+```powershell
+PS C:\CTA> select-string -path ".\j-13878.log" -pattern "eipalloc"
+
+j-13878.log:1115:{"@level":"info","@message":"aws_eip.eip_NLB[0]: Creation complete after 1s [id=eipalloc-0a7ae12341a90f6
+d8]","@module":"terraform.ui","@timestamp":"2023-08-27T17:02:44.487546Z","hook":{"resource":{"addr":"aws_eip.eip_NLB[0]",
+"module":"","resource":"aws_eip.eip_NLB[0]","implied_provider":"aws","resource_type":"aws_eip","resource_name":"eip_NLB",
+"resource_key":0},"action":"create","id_key":"id","id_value":"eipalloc-0a7ae12341a90f6d8","elapsed_seconds":1},"type":"ap
+ply_complete"}
+j-13878.log:1139:{"@level":"info","@message":"aws_eip.eip_NLB[1]: Creation complete after 2s [id=eipalloc-0bbc5aee1a759b7
+5d]","@module":"terraform.ui","@timestamp":"2023-08-27T17:02:44.795668Z","hook":{"resource":{"addr":"aws_eip.eip_NLB[1]",
+"module":"","resource":"aws_eip.eip_NLB[1]","implied_provider":"aws","resource_type":"aws_eip","resource_name":"eip_NLB",
+"resource_key":1},"action":"create","id_key":"id","id_value":"eipalloc-0bbc5aee1a759b75d","elapsed_seconds":2},"type":"ap
+ply_complete"}
+j-13878.log:1156:{"@level":"info","@message":"module.vpc.aws_eip.natgw[\"us-east-1a\"]: Creation complete after 1s [id=ei
+palloc-0b42d1c16bb94e79a]","@module":"terraform.ui","@timestamp":"2023-08-27T17:02:45.009256Z","hook":{"resource":{"addr"
+:"module.vpc.aws_eip.natgw[\"us-east-1a\"]","module":"module.vpc","resource":"aws_eip.natgw[\"us-east-1a\"]","implied_pro
+vider":"aws","resource_type":"aws_eip","resource_name":"natgw","resource_key":"us-east-1a"},"action":"create","id_key":"i
+d","id_value":"eipalloc-0b42d1c16bb94e79a","elapsed_seconds":1},"type":"apply_complete"}
+j-13878.log:1160:{"@level":"info","@message":"module.vpc.aws_eip.natgw[\"us-east-1c\"]: Creation complete after 1s [id=ei
+palloc-043b3cbf9cb1674a6]","@module":"terraform.ui","@timestamp":"2023-08-27T17:02:45.041695Z","hook":{"resource":{"addr"
+:"module.vpc.aws_eip.natgw[\"us-east-1c\"]","module":"module.vpc","resource":"aws_eip.natgw[\"us-east-1c\"]","implied_pro
+vider":"aws","resource_type":"aws_eip","resource_name":"natgw","resource_key":"us-east-1c"},"action":"create","id_key":"i
+d","id_value":"eipalloc-043b3cbf9cb1674a6","elapsed_seconds":1},"type":"apply_complete"}
+```
 
 ## Day 5
 
@@ -523,6 +555,18 @@ allowedTopologies:
 Default ACL has certain properties that cannot be deleted, which is why you see that message. However, it will be removed along with the deletion of the VPC, so it will also be removed from the state file.
 
 [Resource: aws_default_network_acl](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl)
+
+### AWS ELB ENI AuthFailure
+
+```text
+Warning: cleaning up ELB Classic Load Balancer (elb-myproject-development) ENIs: 3 errors occurred:
+      * detaching EC2 Network Interface (eni-0d62114e2af2f28e4/eni-attach-0faa9e8e300e30874): AuthFailure: You do not have permission to access the specified resource.
+      status code: 400, request id: 78b18f9b-cd0a-4b75-95fc-467923c13aec
+      * detaching EC2 Network Interface (eni-0a722501454be7e65/eni-attach-0d1b67529139932ae): AuthFailure: You do not have permission to access the specified resource.
+      status code: 400, request id: 0d1df804-f50e-4341-a722-46522342c5ad
+      * detaching EC2 Network Interface (eni-08b39f3241a5cb7b1/eni-attach-08bb3e1d839e198e6): AuthFailure: You do not have permission to access the specified resource.
+      status code: 400, request id: df32189d-6223-48ea-a784-b54abf4062ab
+```
 
 ### AWS Security group multiple rules
 
