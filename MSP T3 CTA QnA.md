@@ -313,6 +313,11 @@ Please refer to the following for information related to the Tanzu methodology u
 
 [Istio Traffic Management](https://istio.io/latest/docs/tasks/traffic-management/)
 
+### 
+
+```sh
+kubectl scale deployment <NAME> --replicas 0
+```
 ## Day 7
 
 ### Kibana Dev console

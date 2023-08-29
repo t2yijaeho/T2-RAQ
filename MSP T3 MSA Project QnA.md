@@ -362,6 +362,11 @@ This command will scan the loopback address (127.0.0.1) for SSH host keys, and i
 [Minikube documentation on the docker-env command](https://minikube.sigs.k8s.io/docs/commands/docker-env/)
 [SSH documentation on the ssh-keyscan command](https://linux.die.net/man/1/ssh-keyscan)
 
+### Kubernetes Monitoring, Logging, and Debugging
+
+[Troubleshooting Applications](https://kubernetes.io/docs/tasks/debug/debug-application/)
+
+[Troubleshooting Clusters](https://kubernetes.io/docs/tasks/debug/debug-cluster/)
 ## Day 4
 
 ### npm package install error
