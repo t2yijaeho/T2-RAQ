@@ -200,6 +200,97 @@ command="ntpdate ntp.ubuntu.com"
 
 This will force a clock reset on start up of the distro
 
+### [Networking in Compose](https://docs.docker.com/compose/networking/)
+
+>By default Compose sets up a single network for your app
+
+- Each container for a service joins the default network
+- both reachable by other containers on that network
+- discoverable by them at a hostname identical to the container name
+
+>Your app's network is given a name based on the "project name", which is based on the name of the directory it lives in
+>You can override the project name with either the `--project-name` flag or the `COMPOSE_PROJECT_NAME` environment variable
+
+### [Docker Error Bind: Address Already in Use](https://www.baeldung.com/linux/docker-address-already-in-use)
+
+#### 1. In Docker, the issue “address already in use” occurs when we try to expose a container port that’s already acquired on the host machine
+
+#### 2. Killing the Process
+
+[LiSt Open Files](https://github.com/lsof-org/lsof)
+
+```sh
+lsof -i:8080
+```
+
+```sh
+kill xxx
+```
+
+[Find Open Ports in Linux](https://www.baeldung.com/linux/find-open-ports)
+
+#### 3. Expose Free Port
+
+### [Understand DNS Propagation](https://world.siteground.com/kb/dns-propagation/)
+
+>DNS propagation refers to the process of updating information on the internet’s DNS (Domain Name System) servers
+
+Factors affecting the Domain propagation period
+
+- Time to Live (TTL) of the DNS record, the record type
+- DNS cache
+- Network conditions.
+
+[Google Admin Toolbox](https://toolbox.googleapps.com/apps/main/)
+
+[Google Admin Toolbox Dig](https://toolbox.googleapps.com/apps/dig/)
+
+### [Let’s Encrypt Chain of Trust](https://letsencrypt.org/certificates/)
+
+Root Certificates
+
+- ISRG Root X1 (RSA 4096, O = Internet Security Research Group, CN = ISRG Root X1)
+
+Intermediate Certificates
+
+- Let’s Encrypt R3 (RSA 2048, O = Let's Encrypt, CN = R3)
+
+### [Services top-level element](https://docs.docker.com/compose/compose-file/05-services/#services-top-level-element)
+
+A service is an abstract definition of a computing resource within an application which can be scaled or replaced independently from other components
+
+- backed by a set of containers
+- run by the platform according to replication requirements and placement constraints
+- defined by a Docker image and set of runtime arguments
+
+### Network Tools
+
+#### [network statistics](https://tldp.org/LDP/nag2/x-087-2-iface.netstat.html)
+
+```sh
+netstat -nltp | grep 8080
+```
+
+-n: Display numeric addresses instead of hostnames.
+-l: List only listening sockets.
+-t: List only TCP sockets.
+-p: Display the PID and program name of the process that owns the socket.
+
+#### [socket statistics](https://www.networkworld.com/article/3683910/using-the-ss-command-on-linux-to-view-details-on-sockets.html)
+
+```sh
+ss | grep 8080
+```
+
+- State: The state of the socket. LISTEN state means that it is listening for incoming connections
+- Recv-Q: The number of bytes in the receive queue for the socket
+- Send-Q: The number of bytes in the send queue for the socket
+- Local Address:Port: The local address and port of the socket
+- Peer Address:Port: The address and port of the remote peer for the socket
+- User: The user who owns the socket
+- Inode: The inode number of the socket
+- Pid/Program name: The PID and program name of the process that owns the socket
+
 ## Day 3
 
 ### My IP
@@ -367,6 +458,11 @@ This command will scan the loopback address (127.0.0.1) for SSH host keys, and i
 [Troubleshooting Applications](https://kubernetes.io/docs/tasks/debug/debug-application/)
 
 [Troubleshooting Clusters](https://kubernetes.io/docs/tasks/debug/debug-cluster/)
+
+### YAML List
+
+[YAML indentation for Lists](https://stackoverflow.com/questions/17014460/yaml-indentation-for-array-in-hash)
+
 ## Day 4
 
 ### npm package install error
@@ -951,6 +1047,12 @@ curl -I https://08B4564CDA95B0E162C6E40AE4465A16.gr7.us-west-2.eks.amazonaws.com
 If the manual test fails, it suggests a problem with the repository's availability or accessibility, and you may need to investigate further.
 
 By following these steps, you should be able to identify the cause of the error and resolve the DNS resolution and repository access issue in Argo CD.
+
+### Amazon EKS Node Group Update
+
+[Updating a managed node group](https://docs.aws.amazon.com/eks/latest/userguide/update-managed-node-group.html)
+
+[Self-managed node updates](https://docs.aws.amazon.com/eks/latest/userguide/update-stack.html)
 
 ## Day 9
 
