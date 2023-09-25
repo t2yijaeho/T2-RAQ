@@ -969,6 +969,18 @@ Events:                       <none>
 
 ### [Using Git source control in VS Code](https://code.visualstudio.com/docs/sourcecontrol/overview)
 
+### [S3 compatible cloud storage service](https://medium.com/@anishaspace/how-to-use-aws-cli-with-any-s3-compatible-cloud-storage-service-8054d5e49cdd)
+
+>AWS Command Line Interface (CLI) works with any S3 compatible cloud storage service. You can setup the AWS CLI using the following steps to work with any cloud storage service
+
+[Rclone](https://rclone.org/)
+
+[S3cmd](https://s3tools.org/s3cmd)
+
+[s5cmd](https://github.com/peak/s5cmd)
+
+[S3 Browser](https://s3browser.com/)
+
 ## Day 7
 
 ### Helm Chart
