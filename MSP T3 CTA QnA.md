@@ -266,6 +266,16 @@ Roll back a release to a previous revision
 
 [How to Merge when you get error "Hint: You have divergent branches and need to specify how to reconcile them."](https://stackoverflow.com/questions/71768999/how-to-merge-when-you-get-error-hint-you-have-divergent-branches-and-need-to-s)
 
+### [remove useless print during prepareUpgrade #12445](https://github.com/helm/helm/pull/12445/files)
+
+Remove a useless print during upgrade, this issue prevents to parse stdout of `helm upgrade .. -o yaml|json`
+
+pkg/action/upgrade.go
+
+```go
+fmt.Println(driver.ContainsSystemLabels(u.Labels))
+```
+
 ## Day 6
 
 ### Domain Driven Design
@@ -313,11 +323,12 @@ Please refer to the following for information related to the Tanzu methodology u
 
 [Istio Traffic Management](https://istio.io/latest/docs/tasks/traffic-management/)
 
-### 
+### Pod Termination
 
 ```sh
 kubectl scale deployment <NAME> --replicas 0
 ```
+
 ## Day 7
 
 ### Kibana Dev console
@@ -345,8 +356,6 @@ Kubelet configuration: Review the kubelet's configuration to ensure it is proper
 API server issues: If none of the above steps resolve the issue, there may be problems with the Kubernetes API server itself. Check the API server logs and investigate if there are any errors or issues reported.
 
 It's recommended to further investigate the specific error messages, review the Kubernetes cluster configuration, and consult the Kubernetes documentation or relevant support resources to troubleshoot and resolve the kubelet upstream connection errors.
-
-
 ```
 
 ### Kibana disconnect from Elastic Search
@@ -373,7 +382,6 @@ Windows > Reset Perspective
 - [SigNoz](https://signoz.io/)
 - [Glowroot: A lightweight and easy-to-use APM system that is designed for Java applications](https://glowroot.org/)
 - [Scouter: A Java-specific APM system that is designed for high-performance applications](https://github.com/scouter-project/scouter)
-
 
 ### Terraform module version conflict
 
