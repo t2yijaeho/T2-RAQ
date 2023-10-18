@@ -266,7 +266,7 @@ Roll back a release to a previous revision
 
 [How to Merge when you get error "Hint: You have divergent branches and need to specify how to reconcile them."](https://stackoverflow.com/questions/71768999/how-to-merge-when-you-get-error-hint-you-have-divergent-branches-and-need-to-s)
 
-### [remove useless print during prepareUpgrade #12445](https://github.com/helm/helm/pull/12445/files)
+### [Remove useless print during prepareUpgrade #12445](https://github.com/helm/helm/pull/12445/files)
 
 Remove a useless print during upgrade, this issue prevents to parse stdout of `helm upgrade .. -o yaml|json`
 
@@ -365,6 +365,28 @@ It's recommended to further investigate the specific error messages, review the 
 ### node(s) didn't have free ports for the requested pod ports
 
 - disable lightweight prometheus and kiali-server in eMarket app
+
+### [Kubernetes Garbage Collection](https://kubernetes.io/docs/concepts/architecture/garbage-collection/)
+
+#### Cascading Deletion
+
+- Foreground cascading deletion: After deleting all the dependent objects, the controller deletes the owner object
+- Background cascading deletion: By default the Kubernetes API server deletes the owner object immediately and the controller cleans up the dependent objects in the background
+
+#### Container Image Lifecycle
+
+Image manager, part of the kubelet, with the cooperation of cadvisor. The kubelet considers the following disk usage limits
+
+- HighThresholdPercent
+- LowThresholdPercent
+
+#### Container Garbage Collection
+
+The kubelet garbage collects unused containers based on the following variables
+
+- MinAge: the minimum age at which the kubelet can garbage collect a container. Disable by setting to 0.
+- MaxPerPodContainer: the maximum number of dead containers each Pod can have. Disable by setting to less than 0.
+- MaxContainers: the maximum number of dead containers the cluster can have. Disable by setting to less than 0.
 
 ## Day 8
 
@@ -510,6 +532,16 @@ Define the limits of a system's performance
 - System slows down
 
 >The saturation point for the web server might be the point at which the server can no longer handle more than 1000 concurrent requests per second. The critical point for the web server might be the point at which the server will crash if it receives more than 1500 concurrent requests per second
+
+### `kubectl edit` Alternative editor
+
+```sh
+KUBE_EDITOR="nano" kubectl edit svc/docker-registry
+```
+
+### Mermaid(https://github.com/mermaid-js/mermaid)
+
+>Generate diagrams from markdown-like text
 
 ## Day 9
 
