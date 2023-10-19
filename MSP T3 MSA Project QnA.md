@@ -981,6 +981,21 @@ Events:                       <none>
 
 [S3 Browser](https://s3browser.com/)
 
+### Schedule commands
+
+>In this example, directory list will be displayed on your terminal one minute later1
+>The output of tty might be different on your system
+
+```sh
+ubuntu@msa:~$ tty
+/dev/pts/21
+ubuntu@msa:~$ at now + 1 min
+warning: commands will be executed using /bin/sh
+at> ls > /dev/pts/21
+at> <EOT>
+job 8 at Thu Oct 19 09:04:00 2023
+```
+
 ## Day 7
 
 ### Helm Chart
