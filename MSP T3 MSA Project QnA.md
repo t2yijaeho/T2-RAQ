@@ -69,7 +69,7 @@ File handling
 
 Deletion
 
-- `Alt+Del`	Delete current line
+- `Alt+Del` Delete current line
 
 ### Amazon Route53
 
@@ -337,6 +337,18 @@ ss | grep 8080
 - Inode: The inode number of the socket
 - Pid/Program name: The PID and program name of the process that owns the socket
 
+### Gradle bootRun
+
+>- The `gradle bootRun` command might appear to be stuck at around 75% or 80%, but it's actually not stuck. This is a common behavior when running a Spring Boot web application using Gradle
+>- The `bootRun` task is designed to start a web application and keep it running. Therefore, it will run indefinitely until you stop it³. From Gradle's perspective, as long as the web application is running, the `bootRun` task is not complete, which is why Gradle continues to show that the build is not 100% complete
+>- So, if you see `gradle bootRun` stuck at around 75% or 80%, it usually means that your Spring Boot application has started up successfully and is now running. It's not an error or an issue with Gradle or Spring Boot. It's just how the `bootRun` task works
+
+[Spring Boot, Gradle, and Visual Studio Code - Gradle bootRun Task Not Working Correctly](https://stackoverflow.com/questions/51770758/spring-boot-gradle-and-visual-studio-code-gradle-bootrun-task-not-working-co)
+
+[Gets stuck at > Building 80% > :bootRun #3 - GitHub](https://github.com/hamvocke/spring-testing/issues/3)
+
+[Why does my Spring Boot web app not run completely in Gradle?](https://stackoverflow.com/questions/34724299/why-does-my-spring-boot-web-app-not-run-completely-in-gradle)
+
 ## Day 3
 
 ### My IP
@@ -472,7 +484,7 @@ sudo systemctl restart docker
 
 ### Skaffold config minikube env
 
-```
+```sh
 invalid skaffold config: getting minikube env: running [/usr/local/bin/minikube docker-env --shell none -p minikube --user=skaffold]
 ```
 
@@ -591,12 +603,9 @@ docker rmi --force $(docker images -a -q)
 
 ### [The Gradle Daemon](https://docs.gradle.org/current/userguide/gradle_daemon.html)
 
-
-
 ```sh
 ./gradlew --status
 ```
-
 
 #### Restart Gradle Daemon
 
@@ -639,19 +648,13 @@ clean the build directory
 
 Badges Decoratios
 
->A - Added (This is a new file that has been added to the repository)
-
->M - Modified (An existing file has been changed)
-
->D - Deleted (a file has been deleted)
-
->U - Untracked (The file is new or has been changed but has not been added to the repository yet)
-
->C - Conflict (There is a conflict in the file)
-
->R - Renamed (The file has been renamed)
-
->S - Submodule (In repository exists another subrepository)
+>- A - Added (This is a new file that has been added to the repository)
+>- M - Modified (An existing file has been changed)
+>- D - Deleted (a file has been deleted)
+>- U - Untracked (The file is new or has been changed but has not been added to the repository yet)
+>- C - Conflict (There is a conflict in the file)
+>- R - Renamed (The file has been renamed)
+>- S - Submodule (In repository exists another subrepository)
 
 Colors Decoration:
 
@@ -1050,6 +1053,36 @@ job 8 at Thu Oct 19 09:04:00 2023
 
 [What is Helm in Kubernetes? Helm and Helm Charts explained | Kubernetes Tutorial 23](https://www.bing.com/videos/search?q=best+video+explain+why+use+helm+chart+youtube&view=detail&mid=6CF58EA85C9A8C7E261B6CF58EA85C9A8C7E261B&FORM=VIRE)
 
+### Terrafrom Operation Timeouts
+
+[Resources - Retries and Customizable Timeouts](https://developer.hashicorp.com/terraform/plugin/sdkv2/resources/retries-and-customizable-timeouts)
+
+Default Timeouts and Deadline Exceeded Errors
+
+- CRUD Function: `Create`, `Read`, `Update`, `Delete`
+- Default Timeout: 20 minutes
+
+>If a CRUD function timeout is exceeded, the SDK will automatically return a ***`context.DeadlineExceeded error`***
+
+[Operation Timeouts](https://developer.hashicorp.com/terraform/language/resources/syntax#operation-timeouts)
+
+>Some resource types provide a special timeouts nested block argument that allows you to customize how long certain operations are allowed to take before being considered to have failed
+
+For example, `scp_bm_server` allows configurable timeouts for create, update, and delete operations
+
+```ruby
+resource "scp_bm_server" "bm_vs" {
+  # ...
+
+  timeouts {
+    create = "60m"
+    delete = "30m"
+  }
+}
+```
+
+>Timeouts are handled entirely by the resource type implementation in the provider, but resource types offering these features follow the convention of defining a child block called timeouts that has a nested argument named after each operation that has a configurable timeout value. Each of these arguments takes a string representation of a duration, such as "60m" for 60 minutes, or "2h" for two hours.
+
 ## Day 8
 
 ### Cloudtrail
@@ -1166,7 +1199,9 @@ The error message indicates that you cannot connect to the Kubernetes service cl
 - Make sure that the repository settings are properly connected.
 - Make sure that you can connect to the service cluster from the admin server.
 
-1. Verify DNS resolution: Check the DNS configuration of the machine or cluster where Argo CD is running. Ensure that the DNS settings are correctly configured, and the machine can resolve hostnames to IP addresses. You can test DNS resolution using the nslookup or dig command. For example:
+#### 1. Verify DNS resolution
+
+Check the DNS configuration of the machine or cluster where Argo CD is running. Ensure that the DNS settings are correctly configured, and the machine can resolve hostnames to IP addresses. You can test DNS resolution using the nslookup or dig command. For example:
 
 ```sh
 nslookup 08B4564CDA95B0E162C6E40AE4465A16.gr7.us-west-2.eks.amazonaws.com
@@ -1174,13 +1209,21 @@ nslookup 08B4564CDA95B0E162C6E40AE4465A16.gr7.us-west-2.eks.amazonaws.com
 
 If DNS resolution fails, you may need to investigate your DNS configuration or check if there are any network connectivity issues.
 
-2. Check repository URL: Double-check the repository URL provided in the Argo CD application configuration. Ensure that the URL is correct and accessible. Make sure there are no typos or errors in the URL.
+#### 2. Check repository URL
 
-3. Verify network connectivity: Ensure that the machine or cluster where Argo CD is running has proper network connectivity to reach the repository URL. Check if there are any network restrictions, firewalls, or security groups that may be blocking the connection.
+Double-check the repository URL provided in the Argo CD application configuration. Ensure that the URL is correct and accessible. Make sure there are no typos or errors in the URL.
 
-4. Check access credentials: If the repository requires authentication, verify that the credentials provided in the Argo CD application configuration are correct and have sufficient privileges to access the repository.
+#### 3. Verify network connectivity
 
-5. Test repository access manually: Try accessing the repository URL manually from the machine or cluster where Argo CD is running. This can help identify if there are any issues with accessing the repository from the environment. You can use tools like curl or wget to test the connectivity.
+Ensure that the machine or cluster where Argo CD is running has proper network connectivity to reach the repository URL. Check if there are any network restrictions, firewalls, or security groups that may be blocking the connection.
+
+#### 4. Check access credentials
+
+If the repository requires authentication, verify that the credentials provided in the Argo CD application configuration are correct and have sufficient privileges to access the repository.
+
+#### 5. Test repository access manually
+
+Try accessing the repository URL manually from the machine or cluster where Argo CD is running. This can help identify if there are any issues with accessing the repository from the environment. You can use tools like curl or wget to test the connectivity.
 
 ```sh
 curl -I https://08B4564CDA95B0E162C6E40AE4465A16.gr7.us-west-2.eks.amazonaws.com/version
