@@ -188,6 +188,28 @@ kernelCommandLine = cgroup_no_v1=all
 
 [Fix Microsoft Store error 0x80131500 on Windows 11/10](https://www.thewindowsclub.com/microsoft-store-error-0x80131500)
 
+### Internet connectivity issues in WSL
+
+[How to fix Internet connectivity issues in WSL](https://www.windowscentral.com/software-apps/how-to-fix-internet-connectivity-issues-in-wsl)
+
+```pwsh
+wsl --shutdown
+netsh winsock reset
+netsh int ip reset all
+netsh winhttp reset proxy
+ipconfig /flushdns
+netsh winsock reset
+shutdown /r
+```
+
+- Shuts down all WSL instances.
+- Resets the Winsock catalog, which is a database that stores information about network protocols and configurations.
+- Resets all TCP/IP settings to their defaults.
+- Resets the WinHTTP proxy settings to their defaults.
+- Flushes the DNS cache, which is a list of recently accessed DNS records.
+- Resets the Winsock catalog again.
+- Restarts the computer.
+
 ## Day 2
 
 ### [Online Boutique](https://github.com/GoogleCloudPlatform/microservices-demo)
@@ -519,6 +541,56 @@ This command will scan the loopback address (127.0.0.1) for SSH host keys, and i
 ### YAML List
 
 [YAML indentation for Lists](https://stackoverflow.com/questions/17014460/yaml-indentation-for-array-in-hash)
+
+>- There can be simply no clear connection between the indentation level and the nesting level.
+>- Keeping the indentation level consistently connected to the nesting level is very important to improve readability. Allowing the suppression of an indentation level for lists as optional sometimes is something you have to be very careful about.
+
+### SSH port configuration
+
+```sh
+ubuntu@host:~$ nmap -p32 portquiz.net
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-11-01 14:15 KST
+Nmap scan report for portquiz.net (35.180.139.74)
+Host is up (0.31s latency).
+rDNS record for 35.180.139.74: ec2-35-180-139-74.eu-west-3.compute.amazonaws.com
+
+PORT   STATE SERVICE
+32/tcp open  unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 1.69 seconds
+ubuntu@host:~$ telnet portquiz.net 22
+Trying 35.180.139.74...
+Connected to portquiz.net.
+Escape character is '^]'.
+```
+
+#### **1. Modifying the SSH Port on Your Server**
+
+Execute the following commands in your server's terminal:
+
+```sh
+echo "Port 2022" | sudo tee -a  /etc/ssh/sshd_config
+sudo systemctl restart sshd
+```
+
+The first command appends "Port 10022" to the end of the `/etc/ssh/sshd_config` file, effectively changing the SSH port to `2022`. The second command restarts the SSH service, applying the changes.
+
+#### **2. Updating the Inbound Rule of Your Cloud Service**
+
+Navigate to your cloud service's management console and locate the security settings. Modify the inbound rule for SSH (port 22) to allow traffic on port `2022`.
+
+#### **3. Adjusting Your SSH Client Configuration**
+
+On your local machine, update your SSH client configuration to use port `2022` when connecting to your server. The exact steps for this will depend on your SSH client.
+
+### Concepts of container registries, repositories
+
+[About registries, repositories, and artifacts](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-concepts)
+
+- >A container registry is a service that stores and distributes container images and related artifacts
+- >A repository is a collection of container images or other artifacts in a registry that have the same name, but different tags
+- >A container image or other artifact within a registry is associated with one or more tags, has one or more layers, and is identified by a manifest
+- >The tag for an image or other artifact specifies its version
 
 ## Day 4
 
