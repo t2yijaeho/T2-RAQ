@@ -1117,6 +1117,23 @@ at> <EOT>
 job 8 at Thu Oct 19 09:04:00 2023
 ```
 
+### SCP Gateway Authorization Error
+
+The SCP Gateway Authorization error can arise when a significant time difference exists between the server and the client, often attributed to time skew or clock drift. This temporal discrepancy can hinder the successful authentication process between the client and the SCP Gateway, resulting in authorization failures
+
+```ruby
+│ Error: 401 Unauthorized > {
+│   "service" : "GW",
+│   "timestamp" : "2023-11-06T11:03:22.178Z",
+│   "contactUrl" : "https://cloud.samsungsds.com",
+│   "message" : "Unauthorized",
+│   "status" : 401,
+│   "code" : "PLATFORM-GW-00006",
+│   "path" : "/project/v3/projects/PROJECT-u2BmcTM3qtnLOFixumS7ed",
+│   "requestId" : "REQUEST-910FD4013C8A4BD58B9FC952C5684746"
+│ }
+```
+
 ## Day 7
 
 ### Helm Chart
