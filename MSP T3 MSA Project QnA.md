@@ -1172,6 +1172,12 @@ resource "scp_bm_server" "bm_vs" {
 
 >Timeouts are handled entirely by the resource type implementation in the provider, but resource types offering these features follow the convention of defining a child block called timeouts that has a nested argument named after each operation that has a configurable timeout value. Each of these arguments takes a string representation of a duration, such as "60m" for 60 minutes, or "2h" for two hours.
 
+### Argo CD App Deletion
+
+[App Deletion](https://argo-cd.readthedocs.io/en/stable/user-guide/app_deletion/)
+
+[Argocd application resource stuck at deletion](https://stackoverflow.com/questions/71164538/argocd-application-resource-stuck-at-deletion)
+
 ## Day 8
 
 ### Cloudtrail
