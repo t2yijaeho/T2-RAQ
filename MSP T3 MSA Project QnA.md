@@ -1178,6 +1178,14 @@ resource "scp_bm_server" "bm_vs" {
 
 [Argocd application resource stuck at deletion](https://stackoverflow.com/questions/71164538/argocd-application-resource-stuck-at-deletion)
 
+### Jenkins AWS Credentials Validation
+
+```text
+These credentials are NOT valid: "AWS was not able to validate the provided access credentials (Service: Amazon EC2; Status Code: 401; Error Code: AuthFailure; Request ID: d0374161-3a5e- 49be-a77b-4d52fb6d9fff; Proxy: null)"
+```
+
+In Jenkins, when you enter an `SCP credential` as the AWS credential type, and do not specify an endpoint separately, the validation is performed against the AWS cloud endpoint, so an error may occur. When running the Jenkins pipeline, the SCP endpoint is specified in the Terraform backend settings, so it runs normally. Since the validation is not performed when registering the credential, it is necessary to be careful
+
 ## Day 8
 
 ### Cloudtrail
@@ -1334,6 +1342,10 @@ By following these steps, you should be able to identify the cause of the error 
 
 [Self-managed node updates](https://docs.aws.amazon.com/eks/latest/userguide/update-stack.html)
 
+### [Visual Studio Code Kubernetes Tools](https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools)
+
+[Working with Kubernetes in VS Code](https://code.visualstudio.com/docs/azure/kubernetes)
+
 ## Day 9
 
 ### [Kiali Topology Graph](https://kiali.io/docs/features/topology/#graph)
@@ -1385,6 +1397,26 @@ the kubelet does not try fetching the image. If the image is somehow already pre
 `package.json` is a versioning file that primarily contains the list of dependencies (libraries) your node.js project needs to run
 
 `package-lock.json` is a lockfile that contains information about the dependencies/packages with their ***exact version numbers*** that were installed for a node.js project
+
+### Tag
+
+#### 1. Build Number Tag
+
+```sh
+docker tag <image-name>:<build-number> latest
+```
+
+[Properly Versioning Docker Images](https://stackoverflow.com/questions/56212495/properly-versioning-docker-images)
+
+[How to use Docker tags to add version control to images](https://www.techrepublic.com/article/how-to-use-docker-tags-to-add-version-control-to-images/)
+
+#### 2. Content Based Tag
+
+```sh
+docker buildx build --build-arg TAG_FORMAT=%(image:%(sha256)) -t frontend:latest --push
+```
+
+[Disadvantages of image tags](https://cloud.google.com/kubernetes-engine/docs/concepts/about-container-images#disadvantages_of_image_tags)
 
 ## Day 10
 
