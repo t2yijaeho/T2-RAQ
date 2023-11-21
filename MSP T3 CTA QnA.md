@@ -70,20 +70,58 @@ When downloading module package directories in Terraform, if it is configured to
 
 [Setting up CodeWhisperer with AWS Cloud9](https://docs.aws.amazon.com/codewhisperer/latest/userguide/cloud9-setup.html)
 
+- Enabling IAM permissions for CodeWhisperer
+- Activating Amazon CodeWhisperer with AWS Cloud9
+
 [Language support in the AWS Cloud9 Integrated Development Environment (IDE)](https://docs.aws.amazon.com/cloud9/latest/user-guide/language-support.html)
+
+>The AWS Cloud9 IDE supported programming languages and to what level.
+
+- Syntax highlighting
+- Run UI
+- Outline view
+- Code hints and linting
+- Code completion
+- Debugging
+
+### AWS Cloud9 Instance Volume Resize
+
+[RESIZE CLOUD9 INSTANCE ROOT VOLUME](https://ec2spotworkshops.com/ecs-spot-capacity-providers/workshopsetup/resize_ebs.html)
+
+- The default 10GiB is may not be enough
+- Resize the EBS volume used by the Cloud9 instance
+- Reboot the instance ()
+
+```sh
+sudo reboot
+```
+
+```sh
+df --human-readable
+```
+
+*Depending on the cloud operator or service, separate mount, partition, and volume resizing operations may be required for each operating system after changing the storage capacity.*
 
 ## Day 4
 
 ### GitOps Console
 
-- Commit: Push to a Git repository
-- PaC Install: Create Package Directory to a Git repository and Push Package
-- Register: Create an Argo CD application
-- Sync: Synchronize an Argo CD application
+- **`Commit`**: Push to a Git repository
+- **`PaC Install`**: Create Package Directory to a Git repository and Push Package
+- **`Register`**: Create an Argo CD application
+- **`Sync`**: Synchronize an Argo CD application
 
 ### VS Code Remote SSH - The process tried to write to a nonexistent pipe
 
-This error message can occur for several reasons when using VS Code's Remote-SSH extension.
+#### Key Changed
+
+To force SSH to ignore the known_hosts error, you can use the `-o StrictHostKeyChecking=no` option when connecting to the server. This will tell SSH not to verify the server's host key, which will allow you to connect even if the key is not known or has changed.
+
+```sh
+ssh -o StrictHostKeyChecking=no user@server
+```
+
+This error message can occur for several other reasons when using VS Code's Remote-SSH extension.
 
 - One possible solution is to add the absolute file path to a custom SSH config file (C:\\Users\\{USERNAME}\\.ssh\\config)
 
@@ -194,6 +232,20 @@ palloc-043b3cbf9cb1674a6]","@module":"terraform.ui","@timestamp":"2023-08-27T17:
 vider":"aws","resource_type":"aws_eip","resource_name":"natgw","resource_key":"us-east-1c"},"action":"create","id_key":"i
 d","id_value":"eipalloc-043b3cbf9cb1674a6","elapsed_seconds":1},"type":"apply_complete"}
 ```
+
+### Space in the name
+
+```pwsh
+icacls ec2_emarket_dev_us /grant:r "%username%":(R)"
+```
+
+In cases where there are `spaces` in the account name, it may often be recognized as separate parameters in the CLI environment.
+
+It is necessary to not use `spaces` in the account name or to enclose it in quotation marks to recognize it as a single variable.
+
+### [Secret Volume in Kubernetes](https://kubernetes.io/docs/concepts/storage/volumes/#secret)
+
+>secret volumes are backed by tmpfs (a RAM-backed filesystem) so they are never written to non-volatile storage.
 
 ## Day 5
 
@@ -636,7 +688,6 @@ kubectl describe pod <PENDING POD NAME>
 [Troubleshooting Kubernetes Pods: Stuck in a "Pending" State](https://www.blinkops.com/blog/troubleshooting-kubernetes-pods-stuck-in-pending-state)
 
 [Debug Pods](https://kubernetes.io/docs/tasks/debug/debug-application/debug-pods/)
-
 
 ## Day 10
 
