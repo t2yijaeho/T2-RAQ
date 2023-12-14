@@ -90,7 +90,7 @@ When downloading module package directories in Terraform, if it is configured to
 
 - The default 10GiB is may not be enough
 - Resize the EBS volume used by the Cloud9 instance
-- Reboot the instance ()
+- Reboot the instance
 
 ```sh
 sudo reboot
@@ -580,7 +580,7 @@ Define the limits of a system's performance
 #### Saturation point
 
 - The point at which the system can no longer handle any additional load
-- Use	To ensure that the system is not overloaded
+- To ensure that the system is not overloaded
 - System slows down
 
 >The saturation point for the web server might be the point at which the server can no longer handle more than 1000 concurrent requests per second. The critical point for the web server might be the point at which the server will crash if it receives more than 1500 concurrent requests per second
@@ -591,7 +591,7 @@ Define the limits of a system's performance
 KUBE_EDITOR="nano" kubectl edit svc/docker-registry
 ```
 
-### Mermaid(https://github.com/mermaid-js/mermaid)
+### [Mermaid](https://github.com/mermaid-js/mermaid)
 
 >Generate diagrams from markdown-like text
 
